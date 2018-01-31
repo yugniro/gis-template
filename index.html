@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <title>АзНИИРХ - GIS</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="vendor/leaflet/leaflet.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">АзНИИРХ ГИС</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Базовая карта</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Расширенная карта</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="#" class="nav-link" data-toggle="modal" data-target="#login-modal">Войти</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main role="main">
+
+      <section class="map-section">
+      <div class="container-fluid pl-0 pr-0">
+      <div class="row no-gutters">
+        <div class="col-md-9">
+            <div id="map-box" style="height: 720px;"></div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">Элементы ГИС</div>
+                <div class="card-body">
+                    <ul><li>element</li></ul>
+                </div>
+            </div>
+        </div>
+        </div> 
+      </div>
+      </section>
+    
+    </main>
+
+    <footer class="text-muted">
+      <div class="container-fluid">
+        <p>&copy; 2018 АзНИИРХ Онлайн ГИС.</p>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="login-modalLabel">Авторизация</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Почта</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="nagibator228@mail.ru">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Пароль</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="inputPassword3" placeholder="NeYgadaewYoba">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-primary">Войти</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/leaflet/leaflet.js"></script>
+    
+    <script>
+        var map = L.map('map-box').setView([44, 35], 7);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://azniirkh.ru">AzNIIRKH</a>'
+    }).addTo(map);
+    
+    map.on('click', function(e){
+        alert("Lat: " + e.latlng.lat + ", lon: " + e.latlng.lng);
+    });
+
+    L.marker([44, 35]).addTo(map)
+        .bindPopup('Lol kek cheburek')
+        .openPopup();
+    </script>
+  </body>
+</html>
