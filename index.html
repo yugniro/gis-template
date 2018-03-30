@@ -13,7 +13,6 @@
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="vendor/leaflet/leaflet.css" rel="stylesheet">
 </head>
 
 <body>
@@ -28,11 +27,11 @@
         <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Базовая карта</a>
+                    <a class="nav-link" href="#">Онлайн карта</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Расширенная карта</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Авторы</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Сайт АзНИИРХ</a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="#" class="nav-link" data-toggle="modal" data-target="#login-modal">Войти</a></li>
@@ -41,67 +40,11 @@
     </div>
 </nav>
 
-<main role="main">
-    <section class="map-section">
-        <div class="container-fluid pl-0 pr-0">
-            <div class="row no-gutters">
-                <div class="col-md-9">
-                    <div id="map-box" style="height: 700px;"></div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-header mb-1">Интерактивные слои</div>
-                        <div class="card-body p-0">
-                            <div class="gis-layer-list">
-                                <div class="gis-group-layer ml-2 pl-3">
-                                    <div class="gis-element-title">Базовые слои</div>
-                                    <small class="text-muted">Фундаментальные слои картирования</small>
-                                    <div class="gis-element-items pl-2 d-none">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="map-tile" checked disabled>
-                                            <label class="custom-control-label" for="map-tile">Базовый спутниковый снимок</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="gis-cities" data-target="azniirkh_zones:south_russia_placekeys">
-                                            <label class="custom-control-label" for="gis-cities">Города</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="gis-admin-borders">
-                                            <label class="custom-control-label" for="gis-admin-borders">Зоны ответственности АзНИИРХ</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gis-group-layer ml-2 pl-3">
-                                    <div class="gis-element-title">Рыболовные участки</div>
-                                    <small class="text-muted">Границы рыболовных участков субъектов предпринимательства</small>
-                                    <div class="gis-element-items pl-2 d-none">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="gis-fisharea-bs">
-                                            <label class="custom-control-label" for="gis-fisharea-bs">Черное море</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="gis-fisharea-as">
-                                            <label class="custom-control-label" for="gis-fisharea-as">Азовское море</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="gis-fisharea-iw">
-                                            <label class="custom-control-label" for="gis-fisharea-iw">Внутренние водоемы</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<iframe src="map.html" width="100%" style="border:none;width:100%;height: calc(100vh - 100px);"></iframe>
 
-</main>
-
-<footer class="text-muted">
+<footer class="text-muted pt-1 pb-0">
     <div class="container-fluid">
-        <p>&copy; 2018 АзНИИРХ Онлайн Карта.</p>
+        <p>&copy; 2018 Пятинский М.М. АзНИИРХ Онлайн Карта.</p>
     </div>
 </footer>
 
@@ -143,57 +86,6 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/leaflet/leaflet.js"></script>
-<script src="js/gis.js"></script>
 
-<script>
-    var enabledLayers = {};
-
-    // define map object with center
-    var map = L.map('map-box').setView([44, 35], 6);
-    // load basic tiles from WMS
-    var bg = L.tileLayer.wms('https://map.azniirkh.ru/geoserver/azniirkh_zones/wms?', {
-        layers: 'south-russia-tile',
-        attribution: '&copy; <a href="http://azniirkh.ru">AzNIIRKH</a>'
-    }).addTo(map);
-
-    // execute after-load features with jquery
-    $(function(){
-        // visual display hidden elements
-        $('.gis-group-layer').on('click', function(){
-            var triggerDom = $(this).find('.gis-element-items');
-            if (triggerDom.hasClass('d-none')) {
-                $('.gis-element-items').addClass('d-none');
-            }
-            triggerDom.toggleClass('d-none');
-        });
-        // process geojson data display or hide based on checkbox status
-        $('input[type=checkbox]').on('change', function(){
-            var checked = $(this).is(':checked');
-
-            var layerName = $(this).attr('data-target');
-            if (!layerName || layerName.length < 3) {
-                return false;
-            }
-
-            if (checked) {
-                if (layerName in enabledLayers && enabledLayers[layerName] === true) {
-                    return true; // do not load data if always used
-                }
-                addGeojsonPoints(layerName, 'https://map.azniirkh.ru/geoserver/azniirkh_zones/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + layerName + '&maxFeatures=1000&outputFormat=text/javascript', map);
-                enabledLayers[layerName] = true;
-            } else {
-                removeGeojsonPoints(layerName);
-                enabledLayers[layerName] = false;
-            }
-
-
-        });
-    });
-
-    //map.on('click', function (e) {
-    //    alert("Lat: " + e.latlng.lat + ", lon: " + e.latlng.lng);
-    //});
-</script>
 </body>
 </html>
