@@ -37,3 +37,15 @@ footer p {
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+/** Gis legend styles */
+.gis-group-layer {
+  border-left: 3px solid #c9c9c9;
+  border-bottom: 1px solid #f4f4f4;
+  border-top: 1px solid #f4f4f4;
+  margin-bottom: 10px;
+}
+.gis-group-layer:focus, .gis-group-layer:hover {
+  background-color: #eaf0ff;
+  border-left: 3px solid #289d43;
+}
