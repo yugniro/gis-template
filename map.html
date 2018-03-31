@@ -38,6 +38,12 @@
         <div class="card">
             <div class="card-header mb-1">Слои</div>
             <div class="card-body p-0">
+                <div class="text-right mb-2">
+                    <span class="badge badge-light" id="gis-zoom-azov">🔎 Азовское море</span>
+                    <span class="badge badge-light" id="gis-zoom-blacksea">🔎 Черное море</span>
+                    <span class="badge badge-light" id="gis-zoom-rostov">🔎 Ростов</span>
+                    <span class="badge badge-light" id="gis-zoom-krasnodar">🔎 Краснодар</span>
+                </div>
                 <div class="gis-layer-list">
                     <div class="gis-group-layer ml-2 pl-3">
                         <div class="gis-element-title">Базовые слои</div>
@@ -48,7 +54,7 @@
                                 <label class="custom-control-label" for="map-tile">Базовый спутниковый снимок</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gis-cities" data-target="azniirkh_zones:south_russia_placekeys">
+                                <input type="checkbox" class="custom-control-input" id="gis-cities" data-toggle="point" data-target="azniirkh_zones:south_russia_placekeys">
                                 <label class="custom-control-label" for="gis-cities">Города</label>
                             </div>
                             <div class="custom-control custom-checkbox">
@@ -66,7 +72,7 @@
                                 <label class="custom-control-label" for="gis-fisharea-bs">Черное море</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gis-fisharea-as">
+                                <input type="checkbox" class="custom-control-input" id="gis-fisharea-as" data-toggle="multiline" data-target="azniirkh_zones:test-zones">
                                 <label class="custom-control-label" for="gis-fisharea-as">Азовское море</label>
                             </div>
                             <div class="custom-control custom-checkbox">
@@ -112,7 +118,9 @@
                 var checked = $(this).is(':checked');
 
                 var layerName = $(this).attr('data-target');
-                if (!layerName || layerName.length < 3) {
+                var layerType = $(this).attr('data-toggle');
+
+                if (!layerName || layerName.length < 3 || !layerType || layerType.length < 3) {
                     return false;
                 }
 
@@ -120,14 +128,25 @@
                     if (layerName in enabledLayers && enabledLayers[layerName] === true) {
                         return true; // do not load data if always used
                     }
-                    addGeojsonPoints(layerName, 'https://map.azniirkh.ru/geoserver/azniirkh_zones/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + layerName + '&maxFeatures=1000&outputFormat=text/javascript', map);
+                    displayLayerType(layerType, layerName, map);
                     enabledLayers[layerName] = true;
                 } else {
-                    removeGeojsonPoints(layerName);
+                    removeLayer(layerName);
                     enabledLayers[layerName] = false;
                 }
-
-
+            });
+            // process zoom buttons
+            $('#gis-zoom-azov').on('click', function(){
+                map.setView([46.1, 36.5], 8);
+            });
+            $('#gis-zoom-blacksea').on('click', function(){
+                map.setView([43.8, 36.2], 8);
+            });
+            $('#gis-zoom-rostov').on('click', function(){
+                map.setView([47.2, 39.7], 9);
+            });
+            $('#gis-zoom-krasnodar').on('click', function(){
+                map.setView([45.0, 38.9], 9);
             });
         });
 
