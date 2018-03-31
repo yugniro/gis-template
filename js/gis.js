@@ -15,8 +15,8 @@ function displayLayerType(type, name, map) {
         return true;
     }
     // geojson -> multiline
-    if (type === 'multiline' || type === 'lines' || type === 'multilines') {
-        addGeojsonLines(name, map);
+    if (type === 'multiline' || type === 'lines' || type === 'multilines' || type === 'multipoly' || type === 'poly') {
+        addGeojsonGeometryObject(name, map);
         return true;
     }
 
@@ -24,7 +24,12 @@ function displayLayerType(type, name, map) {
     return false;
 }
 
-function addGeojsonLines(name, map) {
+/**
+ * Add leaflet geojson layer from OWS with some geometry: multiline, multipolygon, line, poly
+ * @param name
+ * @param map
+ */
+function addGeojsonGeometryObject(name, map) {
     $.ajax({
         url: owsurl + '?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=1000&outputFormat=text/javascript',
         dataType: 'jsonp',
@@ -33,7 +38,10 @@ function addGeojsonLines(name, map) {
             var layer = L.geoJSON(data, {
                 onEachFeature: function(feature, layer) {
                     if (feature.properties && feature.properties.name) {
-                        layer.bindPopup('<strong>' + feature.properties.name + '</strong><br /><p>' + feature.properties.desc + '</p>');
+                        var tooltext = String(feature.properties.name);
+                        var popuptext = '<strong>' + String(feature.properties.name) + '</strong><br /><p>' + String(feature.properties.desc) + '</p>';
+                        layer.bindTooltip(tooltext, {permanent: true});
+                        layer.bindPopup(popuptext);
                     }
                 }
             });
