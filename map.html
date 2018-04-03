@@ -39,8 +39,8 @@
             <div class="card-header mb-1">Слои</div>
             <div class="card-body p-0">
                 <div class="text-right mb-2">
-                    <span class="badge badge-light" id="gis-zoom-azov">🔎 Азовское море</span>
-                    <span class="badge badge-light" id="gis-zoom-blacksea">🔎 Черное море</span>
+                    <span class="badge badge-light" id="gis-zoom-azov">🔎 Азов</span>
+                    <span class="badge badge-light" id="gis-zoom-blacksea">🔎 ЧМ</span>
                     <span class="badge badge-light" id="gis-zoom-rostov">🔎 Ростов</span>
                     <span class="badge badge-light" id="gis-zoom-krasnodar">🔎 Краснодар</span>
                 </div>
@@ -99,7 +99,7 @@
         var map = L.map('azniirkh-map').setView([44, 35], 6);
         // load basic tiles from WMS
         var bg = L.tileLayer.wms('https://map.azniirkh.ru/geoserver/azniirkh_zones/wms?', {
-            layers: 'south-russia-tile',
+            layers: 'base_layer_250_01_geotiff',
             attribution: '&copy; <a href="http://azniirkh.ru">AzNIIRKH</a>'
         }).addTo(map);
 
