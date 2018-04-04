@@ -36,51 +36,76 @@
     <div id="azniirkh-map"></div>
     <div id="azniirkh-legend">
         <div class="card">
-            <div class="card-header mb-1">Слои</div>
+            <div class="card-header mb-0">Управление</div>
             <div class="card-body p-0">
-                <div class="text-right mb-2">
-                    <span class="badge badge-light" id="gis-zoom-azov">🔎 Азов</span>
-                    <span class="badge badge-light" id="gis-zoom-blacksea">🔎 ЧМ</span>
-                    <span class="badge badge-light" id="gis-zoom-rostov">🔎 Ростов</span>
-                    <span class="badge badge-light" id="gis-zoom-krasnodar">🔎 Краснодар</span>
-                </div>
-                <div class="gis-layer-list">
-                    <div class="gis-group-layer ml-2 pl-3">
-                        <div class="gis-element-title">Базовые слои</div>
-                        <small class="text-muted d-none d-sm-block">Фундаментальные слои картирования</small>
-                        <div class="gis-element-items pl-2 d-none">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="map-tile" checked disabled>
-                                <label class="custom-control-label" for="map-tile">Базовый спутниковый снимок</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gis-cities" data-toggle="point" data-target="azniirkh_zones:south_russia_placekeys">
-                                <label class="custom-control-label" for="gis-cities">Города</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gis-admin-borders">
-                                <label class="custom-control-label" for="gis-admin-borders">Зоны ответственности АзНИИРХ</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gis-group-layer ml-2 pl-3">
-                        <div class="gis-element-title">Рыболовные участки</div>
-                        <small class="text-muted d-none d-sm-block">Границы рыболовных участков субъектов предпринимательства</small>
-                        <div class="gis-element-items pl-2 d-none">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gis-fisharea-bs" data-toggle="multipoly" data-target="azniirkh_zones:blacksea-poly-zones">
-                                <label class="custom-control-label" for="gis-fisharea-bs">Черное море</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gis-fisharea-as" data-toggle="multiline" data-target="azniirkh_zones:test-zones">
-                                <label class="custom-control-label" for="gis-fisharea-as">Азовское море</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="gis-fisharea-iw">
-                                <label class="custom-control-label" for="gis-fisharea-iw">Внутренние водоемы</label>
+                <ul class="nav nav-tabs nav-fill mb-2" id="menuTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#data" role="tab" id="data-tab" data-toggle="tab" aria-controls="data" aria-selected="true">Данные</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#settings" role="tab" id="settings-tab" data-toggle="tab" aria-controls="settings" aria-selected="false">Настройки</a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="menuTabContent">
+                  <div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
+                    <div class="gis-layer-list">
+                        <div class="gis-group-layer ml-2 pl-3">
+                            <div class="gis-element-title">Рыболовные участки</div>
+                            <small class="text-muted d-none d-sm-block">Границы рыболовных участков субъектов предпринимательства</small>
+                            <div class="gis-element-items pl-2 d-none">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="gis-fisharea-bs" data-toggle="multipoly" data-target="azniirkh_zones:blacksea-poly-zones">
+                                    <label class="custom-control-label" for="gis-fisharea-bs">Черное море</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="gis-fisharea-as" data-toggle="multiline" data-target="azniirkh_zones:test-zones">
+                                    <label class="custom-control-label" for="gis-fisharea-as">Азовское море</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="gis-fisharea-iw">
+                                    <label class="custom-control-label" for="gis-fisharea-iw">Внутренние водоемы</label>
+                                </div>
                             </div>
                         </div>
                     </div>
+                  </div>
+                  <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                  <div class="gis-settings">
+                    <div class="text-head-major">Просмотр области</div>
+                        <div class="ml-2">
+                            <span class="badge badge-light" id="gis-zoom-azov">🔎 Азов</span>
+                            <span class="badge badge-light" id="gis-zoom-blacksea">🔎 ЧМ</span>
+                            <span class="badge badge-light" id="gis-zoom-rostov">🔎 Ростов</span>
+                            <span class="badge badge-light" id="gis-zoom-krasnodar">🔎 Краснодар</span>
+                        </div>
+                  </div>
+                  <div class="gis-settings">
+                    <div class="text-head-major">Подложка</div>
+                    <div class="ml-2">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="gis-tile-yandex" name="gis-tile" class="custom-control-input" checked>
+                          <label class="custom-control-label" for="gis-tile-yandex">Яндекс</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="gis-tile-azniirkh" name="gis-tile" class="custom-control-input">
+                          <label class="custom-control-label" for="gis-tile-azniirkh">АзНИИРХ</label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="gis-settings">
+                    <div class="text-head-major">Местность</div>
+                    <div class="ml-2">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                          <input type="checkbox" id="gis-cities" name="gis-cities" class="custom-control-input" data-toggle="point" data-target="azniirkh_zones:south_russia_placekeys">
+                          <label class="custom-control-label" for="gis-cities">Города</label>
+                        </div>
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                          <input type="checkbox" id="gis-borders" name="gis-borders" class="custom-control-input">
+                          <label class="custom-control-label" for="gis-borders">Округа</label>
+                        </div>
+                    </div>
+                  </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -97,11 +122,24 @@
 
         // define map object with center
         var map = L.map('azniirkh-map').setView([46, 36], 7);
+        
         // load basic tiles from WMS
-        var bg = L.tileLayer.wms('https://map.azniirkh.ru/geoserver/azniirkh_zones/wms?', {
-            layers: 'base_layer_250_01_geotiff',
+        /**var bg = L.tileLayer.wms('https://map.azniirkh.ru/geoserver/azniirkh_zones/wms?', {
+            layers: 'base_layer_250_02_egps3857_geotiff',
             attribution: '&copy; <a href="http://azniirkh.ru">AzNIIRKH</a>'
-        }).addTo(map);
+        }).addTo(map);*/
+        // satellite: https://sat{s}.maps.yandex.net/tiles?l=sat&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU
+        // schematic: http://vec{s}.maps.yandex.net/tiles?l=map&v=4.55.2&z={z}&x={x}&y={y}&scale=2&lang=ru_RU
+        var bg = L.tileLayer(
+          'https://sat{s}.maps.yandex.net/tiles?l=sat&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU', {
+            subdomains: ['01', '02', '03', '04'],
+            attribution: '<a href="https://yandex.ru" target="_blank">Яндекс</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>',
+            reuseTiles: true,
+            updateWhenIdle: false
+          }
+        ).addTo(map);
+        // change map projection. Yandex: L.CRS.EPSG3395
+        map.options.crs = L.CRS.EPSG3395;
 
         // execute after-load features with jquery
         $(function(){
@@ -147,6 +185,30 @@
             });
             $('#gis-zoom-krasnodar').on('click', function(){
                 map.setView([45.0, 38.9], 9);
+            });
+            
+            // change tile layer
+            $('input[name=gis-tile]:radio').change(function(){
+                map.removeLayer(bg);
+                var mid = $(this).attr('id');
+                if (mid === 'gis-tile-azniirkh') {
+                    bg = L.tileLayer.wms('https://map.azniirkh.ru/geoserver/azniirkh_zones/wms?', {
+                        layers: 'base_layer_250_02_egps3857_geotiff',
+                        attribution: '&copy; <a href="http://azniirkh.ru">AzNIIRKH</a>'
+                    }).addTo(map);
+                    map.options.crs = L.CRS.EPSG3857;
+                }
+                if (mid === 'gis-tile-yandex') {
+                    bg = L.tileLayer(
+                      'https://sat{s}.maps.yandex.net/tiles?l=sat&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU', {
+                        subdomains: ['01', '02', '03', '04'],
+                        attribution: '<a href="https://yandex.ru" target="_blank">Яндекс</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>',
+                        reuseTiles: true,
+                        updateWhenIdle: false
+                      }
+                    ).addTo(map)
+                    map.options.crs = L.CRS.EPSG3395;
+                }
             });
         });
 
