@@ -37,9 +37,21 @@ function addGeojsonGeometryObject(name, map) {
         success: function(data) {
             var layer = L.geoJSON(data, {
                 onEachFeature: function(feature, layer) {
+                    if (feature.geometry && feature.geometry.coordinates && feature.geometry.coordinates[0][0].length >= 4) {
+                        var poly = turf.polygon(feature.geometry.coordinates[0]);
+                        var parea = turf.area(poly);
+                        parea /= 1000000; // km ^ 2
+                        if (typeof feature.properties.area == 'undefined') {
+                            feature.properties.area = parea.toFixed(2);
+                        }
+                    }
+                    
                     if (feature.properties && feature.properties.name) {
                         var tooltext = String(feature.properties.name);
                         var popuptext = '<strong>' + String(feature.properties.name) + '</strong><br /><p>' + String(feature.properties.desc) + '</p>';
+                        if (typeof feature.properties['area'] != 'undefined') {
+                            popuptext += '<p>Площадь: ' + feature.properties.area + ' кв.км</p>'; 
+                        }
                         layer.bindTooltip(tooltext, {permanent: true});
                         layer.bindPopup(popuptext);
                     }

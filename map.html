@@ -112,9 +112,10 @@
     </div>
 </section>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/leaflet/leaflet.js"></script>
+    <script src='vendor/turf/turf.min.js'></script>
     <script src="js/gis.js"></script>
 
     <script>
@@ -123,13 +124,6 @@
         // define map object with center
         var map = L.map('azniirkh-map').setView([46, 36], 7);
         
-        // load basic tiles from WMS
-        /**var bg = L.tileLayer.wms('https://map.azniirkh.ru/geoserver/azniirkh_zones/wms?', {
-            layers: 'base_layer_250_02_egps3857_geotiff',
-            attribution: '&copy; <a href="http://azniirkh.ru">AzNIIRKH</a>'
-        }).addTo(map);*/
-        // satellite: https://sat{s}.maps.yandex.net/tiles?l=sat&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU
-        // schematic: http://vec{s}.maps.yandex.net/tiles?l=map&v=4.55.2&z={z}&x={x}&y={y}&scale=2&lang=ru_RU
         var bg = L.tileLayer(
           'https://sat{s}.maps.yandex.net/tiles?l=sat&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU', {
             subdomains: ['01', '02', '03', '04'],
