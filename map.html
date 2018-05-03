@@ -49,6 +49,22 @@
                 <div class="tab-content" id="menuTabContent">
                   <div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
                     <div class="gis-layer-list">
+                        <div class="gis-layer ml-2 pl-3" data-target="azniirkh_zones:south_russia_placekeys">
+                            <div class="gis-element">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="gis-oopt" data-toggle="multipoly" data-target="azniirkh_zones:oopt" data-color="#e21776">
+                                    <label class="custom-control-label" for="gis-oopt">Особо охранные зоны</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gis-layer ml-2 pl-3" data-target="azniirkh_zones:south_russia_placekeys">
+                            <div class="gis-element">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="gis-azniirkh-zone" data-toggle="multipoly" data-target="azniirkh_zones:azniirkh_zone" data-color="#e24418">
+                                    <label class="custom-control-label" for="gis-azniirkh-zone">Зона ответственности АзНИИРХ</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="gis-group-layer ml-2 pl-3">
                             <div class="gis-element-title">Рыболовные участки</div>
                             <small class="text-muted d-none d-sm-block">Границы рыболовных участков субъектов предпринимательства</small>
@@ -151,7 +167,8 @@
 
                 var layerName = $(this).attr('data-target');
                 var layerType = $(this).attr('data-toggle');
-
+                var layerColor = $(this).attr('data-color');
+                
                 if (!layerName || layerName.length < 3 || !layerType || layerType.length < 3) {
                     return false;
                 }
@@ -160,7 +177,7 @@
                     if (layerName in enabledLayers && enabledLayers[layerName] === true) {
                         return true; // do not load data if always used
                     }
-                    displayLayerType(layerType, layerName, map);
+                    displayLayerType(layerType, layerName, map, layerColor);
                     enabledLayers[layerName] = true;
                 } else {
                     removeLayer(layerName);
@@ -205,6 +222,9 @@
                 }
             });
         });
+        
+        // fix bootstrap custom-checkbox bug - uncheck all boxes on page overload
+        $('.custom-control-input').prop('checked', false);
 
         //map.on('click', function (e) {
         //    alert("Lat: " + e.latlng.lat + ", lon: " + e.latlng.lng);

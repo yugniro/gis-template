@@ -21,3 +21,17 @@
     margin-bottom: 10px;
     border-bottom: 1px solid #edeeef;
 }
+
+/** single layer style */
+.gis-layer {
+    border-left: 3px solid #c9c9c9;
+    border-bottom: 1px solid #f4f4f4;
+    border-top: 1px solid #f4f4f4;
+    margin-bottom: 10px;
+}
+.gis-layer:focus, .gis-layer:hover {
+    background-color: #eaf0ff;
+}
+.gis-active {
+    border-left: 3px solid #289d43;
+}

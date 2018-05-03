@@ -1,7 +1,7 @@
 var lay = {};
 var owsurl = 'https://map.azniirkh.ru/geoserver/azniirkh_zones/ows';
 
-function displayLayerType(type, name, map) {
+function displayLayerType(type, name, map, color) {
     var url;
     // check if layer is already loaded
     if (name in lay) {
@@ -11,12 +11,12 @@ function displayLayerType(type, name, map) {
 
     // geojson -> points
     if (type === 'point' || type === 'points') {
-        addGeojsonPoints(name, map);
+        addGeojsonPoints(name, map, color);
         return true;
     }
     // geojson -> multiline
     if (type === 'multiline' || type === 'lines' || type === 'multilines' || type === 'multipoly' || type === 'poly') {
-        addGeojsonGeometryObject(name, map);
+        addGeojsonGeometryObject(name, map, color);
         return true;
     }
 
@@ -29,7 +29,7 @@ function displayLayerType(type, name, map) {
  * @param name
  * @param map
  */
-function addGeojsonGeometryObject(name, map) {
+function addGeojsonGeometryObject(name, map, color) {
     $.ajax({
         url: owsurl + '?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=1000&outputFormat=text/javascript',
         dataType: 'jsonp',
@@ -57,6 +57,12 @@ function addGeojsonGeometryObject(name, map) {
                     }
                 }
             });
+            if (typeof(color) !== 'undefined' && color.length >= 3) {
+                layer.setStyle({
+                    fillColor: color,
+                    color: color
+                });   
+            }
             map.addLayer(layer);
             lay[name] = layer;
         }
