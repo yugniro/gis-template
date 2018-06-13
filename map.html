@@ -66,20 +66,33 @@
                             </div>
                         </div>
                         <div class="gis-group-layer ml-2 pl-3">
-                            <div class="gis-element-title">Рыболовные участки</div>
-                            <small class="text-muted d-none d-sm-block">Границы рыболовных участков субъектов предпринимательства</small>
+                            <div class="gis-element-title">Рыбоводные участки</div>
+                            <small class="text-muted d-none d-sm-block">Границы рыбоводных участков субъектов предпринимательства</small>
                             <div class="gis-element-items pl-2 d-none">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="gis-fisharea-bs" data-toggle="multipoly" data-target="azniirkh_zones:blacksea-poly-zones">
-                                    <label class="custom-control-label" for="gis-fisharea-bs">Черное море</label>
+                                    <input type="checkbox" class="custom-control-input" id="rvu-rostov-areas" data-toggle="multipoly" data-target="azniirkh_zones:rvu_rostovskaya_oblast">
+                                    <label class="custom-control-label" for="rvu-rostov-areas">Ростовская обл</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="gis-fisharea-as" data-toggle="multiline" data-target="azniirkh_zones:test-zones">
-                                    <label class="custom-control-label" for="gis-fisharea-as">Азовское море</label>
+                                    <input type="checkbox" class="custom-control-input" id="rvu-krasnodar-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_krasnodarsky_kray">
+                                    <label class="custom-control-label" for="rvu-krasnodar-areas">Краснодарский край</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="gis-fisharea-iw">
-                                    <label class="custom-control-label" for="gis-fisharea-iw">Внутренние водоемы</label>
+                                    <input type="checkbox" class="custom-control-input" id="rvu-stavropol-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_stavropolsky_kray">
+                                    <label class="custom-control-label" for="rvu-stavropol-areas">Ставропольский край</label>
+                                </div>
+                                <hr style="margin: 0;" />
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="show-all-rvu" data-toggle="checkall" data-target="rvu-rostov-areas,rvu-krasnodar-areas,rvu-stavropol-areas">
+                                    <label class="custom-control-label" for="show-all-rvu">показать все слои</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gis-layer ml-2 pl-3" data-target="azniirkh_zones:rpu">
+                            <div class="gis-element">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="rpu-all-zones" data-toggle="multipoly" data-target="azniirkh_zones:rpu" data-color="#e0b90d">
+                                    <label class="custom-control-label" for="rpu-all-zones">Рыбопромысловые участки</label>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +167,11 @@
         // execute after-load features with jquery
         $(function(){
             // visual display hidden elements
-            $('.gis-group-layer').on('click', function(){
+            $('.gis-group-layer').on('click', function(e) {
+                var clickedTargetName = $(e.target).prop('tagName');
+                if(clickedTargetName == "INPUT" || clickedTargetName === "LABEL")
+                    return;
+                
                 var triggerDom = $(this).find('.gis-element-items');
                 if (triggerDom.hasClass('d-none')) {
                     $('.gis-element-items').addClass('d-none');
@@ -172,7 +189,15 @@
                 if (!layerName || layerName.length < 3 || !layerType || layerType.length < 3) {
                     return false;
                 }
+                
+                // process "check all" checkbox features
+                if (layerType == "checkall") {
+                    layerName.split(",").forEach(function(item){
+                        $('#' + item).click();
+                    });
+                }
 
+                // process display/hide layers from API geoserver
                 if (checked) {
                     if (layerName in enabledLayers && enabledLayers[layerName] === true) {
                         return true; // do not load data if always used

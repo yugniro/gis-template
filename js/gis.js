@@ -52,7 +52,7 @@ function addGeojsonGeometryObject(name, map, color) {
                         if (typeof feature.properties['area'] != 'undefined') {
                             popuptext += '<p>Площадь: ' + feature.properties.area + ' кв.км</p>'; 
                         }
-                        layer.bindTooltip(tooltext, {permanent: true});
+                        //layer.bindTooltip(tooltext, {permanent: true});
                         layer.bindPopup(popuptext);
                     }
                 }
