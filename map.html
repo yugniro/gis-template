@@ -70,15 +70,15 @@
                             <small class="text-muted d-none d-sm-block">Границы рыбоводных участков субъектов предпринимательства</small>
                             <div class="gis-element-items pl-2 d-none">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rvu-rostov-areas" data-toggle="multipoly" data-target="azniirkh_zones:rvu_rostovskaya_oblast">
+                                    <input type="checkbox" class="custom-control-input" id="rvu-rostov-areas" data-toggle="multipoly" data-target="azniirkh_zones:rvu_rostovskaya_oblast" data-color="#2a68d3">
                                     <label class="custom-control-label" for="rvu-rostov-areas">Ростовская обл</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rvu-krasnodar-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_krasnodarsky_kray">
+                                    <input type="checkbox" class="custom-control-input" id="rvu-krasnodar-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_krasnodarsky_kray" data-color="#2a68d3">
                                     <label class="custom-control-label" for="rvu-krasnodar-areas">Краснодарский край</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rvu-stavropol-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_stavropolsky_kray">
+                                    <input type="checkbox" class="custom-control-input" id="rvu-stavropol-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_stavropolsky_kray" data-color="#2a68d3">
                                     <label class="custom-control-label" for="rvu-stavropol-areas">Ставропольский край</label>
                                 </div>
                                 <hr style="margin: 0;" />
@@ -193,7 +193,7 @@
                 // process "check all" checkbox features
                 if (layerType == "checkall") {
                     layerName.split(",").forEach(function(item){
-                        $('#' + item).click();
+                        $('#' + item).prop('checked', checked).trigger('change');
                     });
                 }
 
