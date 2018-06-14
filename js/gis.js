@@ -23,7 +23,7 @@ function displayLayerType(type, name, map, color) {
 	// process multiple layer links at one iteration
 	// format name: {namespace:layer1,type;namespace:layer2,type}
 	if (type === 'array' || type === 'multilayer') {
-		if (!name.includes(',')) {
+		if (!name.includes(';')) {
 			alert("Multilayer object contains no comma separator");
 			return false;
 		}
@@ -36,11 +36,10 @@ function displayLayerType(type, name, map, color) {
 				newLayerName = newTypeName[0];
 				newLayerType = newTypeName[1];
 			}
-			console.log(newLayerName + '->' + newLayerType);
+			//console.log(newLayerName + '->' + newLayerType);
 			displayLayerType(newLayerType, newLayerName, map, color);
 		}
 	}
-
 
     return false;
 }
@@ -69,7 +68,10 @@ function addGeojsonGeometryObject(name, map, color) {
                     
                     if (feature.properties && feature.properties.name) {
                         var tooltext = String(feature.properties.name);
-                        var popuptext = '<strong>' + String(feature.properties.name) + '</strong><br /><p>' + String(feature.properties.desc) + '</p>';
+                        var popuptext = '<strong>' + String(feature.properties.name) + '</strong>';
+						if (feature.properties.desc) {
+							popuptext += '<br /><p>' + String(feature.properties.desc) + '</p>';
+						}
                         if (typeof feature.properties['area'] != 'undefined') {
                             popuptext += '<p>Площадь: ' + feature.properties.area + ' кв.км</p>'; 
                         }
@@ -119,7 +121,20 @@ function addGeojsonPoints(name, map) {
 }
 
 function removeLayer(name) {
-    if (name in lay) {
-        map.removeLayer(lay[name]);
-    }
+	if (name.includes(';')) {
+		var layerArray = name.split(';');
+		for (var i = 0; i < layerArray.length; i++) {
+			var newLayerName = layerArray[i];
+			if (newLayerName.includes(',')) {
+				var newTypeName = newLayerName.split(',');
+				newLayerName = newTypeName[0];
+			}
+			// recursion call for clear name
+			removeLayer(newLayerName);
+		}
+	} else {
+		if (name in lay) {
+			map.removeLayer(lay[name]);
+		}
+	}
 }
