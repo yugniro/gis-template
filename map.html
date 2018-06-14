@@ -49,7 +49,30 @@
                 <div class="tab-content" id="menuTabContent">
                   <div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
                     <div class="gis-layer-list">
-                        <div class="gis-layer ml-2 pl-3" data-target="azniirkh_zones:south_russia_placekeys">
+						<!--<div class="gis-layer ml-2 pl-3">
+                            <div class="gis-element">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="gis-waters" data-toggle="multilayer" data-target="azniirkh_zones:water-bodies-all,multipoly;azniirkh_zones:waterways-all,lines">
+                                    <label class="custom-control-label" for="gis-waters">Водные объекты (данные OSM)</label>
+                                </div>
+                            </div>
+                        </div>-->
+						<div class="gis-group-layer ml-2 pl-3">
+                            <div class="gis-element-title">Водные объекты</div>
+                            <small class="text-muted d-none d-sm-block">Водные объекты в зоне ответственности АзНИИРХ</small>
+                            <div class="gis-element-items pl-2 d-none">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="gis-rostov-waters" data-toggle="multilayer" data-target="azniirkh_zones:water-bodies-rostov,multipoly;azniirkh_zones:waterways-rostov,lines" data-color="#00cee4">
+                                    <label class="custom-control-label" for="gis-rostov-waters">Ростовская обл</label>
+                                </div>
+                                <!--<hr style="margin: 0;" />
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="show-all-rvu" data-toggle="checkall" data-target="rvu-rostov-areas,rvu-krasnodar-areas,rvu-stavropol-areas">
+                                    <label class="custom-control-label" for="show-all-rvu">показать все слои</label>
+                                </div>-->
+                            </div>
+                        </div>
+						<div class="gis-layer ml-2 pl-3">
                             <div class="gis-element">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="gis-oopt" data-toggle="multipoly" data-target="azniirkh_zones:oopt" data-color="#e21776">
@@ -57,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gis-layer ml-2 pl-3" data-target="azniirkh_zones:south_russia_placekeys">
+                        <div class="gis-layer ml-2 pl-3">
                             <div class="gis-element">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="gis-azniirkh-zone" data-toggle="multipoly" data-target="azniirkh_zones:azniirkh_zone" data-color="#e24418">
@@ -88,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gis-layer ml-2 pl-3" data-target="azniirkh_zones:rpu">
+                        <div class="gis-layer ml-2 pl-3">
                             <div class="gis-element">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="rpu-all-zones" data-toggle="multipoly" data-target="azniirkh_zones:rpu" data-color="#e0b90d">

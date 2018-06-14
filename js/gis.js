@@ -19,6 +19,27 @@ function displayLayerType(type, name, map, color) {
         addGeojsonGeometryObject(name, map, color);
         return true;
     }
+	
+	// process multiple layer links at one iteration
+	// format name: {namespace:layer1,type;namespace:layer2,type}
+	if (type === 'array' || type === 'multilayer') {
+		if (!name.includes(',')) {
+			alert("Multilayer object contains no comma separator");
+			return false;
+		}
+		var layerArray = name.split(';');
+		for(var i = 0; i < layerArray.length; i++) {
+			var newLayerName = layerArray[i];
+			var newLayerType = 'poly';
+			if (newLayerName.includes(',')) {
+				var newTypeName = newLayerName.split(',');
+				newLayerName = newTypeName[0];
+				newLayerType = newTypeName[1];
+			}
+			console.log(newLayerName + '->' + newLayerType);
+			displayLayerType(newLayerType, newLayerName, map, color);
+		}
+	}
 
 
     return false;
@@ -31,7 +52,7 @@ function displayLayerType(type, name, map, color) {
  */
 function addGeojsonGeometryObject(name, map, color) {
     $.ajax({
-        url: owsurl + '?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=1000&outputFormat=text/javascript',
+        url: owsurl + '?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
         dataType: 'jsonp',
         jsonpCallback: 'parseResponse',
         success: function(data) {
@@ -77,7 +98,7 @@ function addGeojsonGeometryObject(name, map, color) {
 function addGeojsonPoints(name, map) {
     // load layer over jsonp
     $.ajax({
-        url: owsurl + '?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=1000&outputFormat=text/javascript',
+        url: owsurl + '?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
         dataType: 'jsonp',
         jsonpCallback: 'parseResponse',
         success: function(data) {
