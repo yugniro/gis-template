@@ -23,7 +23,7 @@ function displayLayerType(type, name, map, color) {
 	// process multiple layer links at one iteration
 	// format name: {namespace:layer1,type;namespace:layer2,type}
 	if (type === 'array' || type === 'multilayer') {
-		if (!name.includes(';')) {
+		if (name.indexOf(';') === -1) {
 			alert("Multilayer object contains no comma separator");
 			return false;
 		}
@@ -31,7 +31,7 @@ function displayLayerType(type, name, map, color) {
 		for(var i = 0; i < layerArray.length; i++) {
 			var newLayerName = layerArray[i];
 			var newLayerType = 'poly';
-			if (newLayerName.includes(',')) {
+			if (newLayerName.indexOf(',') > 0) {
 				var newTypeName = newLayerName.split(',');
 				newLayerName = newTypeName[0];
 				newLayerType = newTypeName[1];
@@ -121,11 +121,11 @@ function addGeojsonPoints(name, map) {
 }
 
 function removeLayer(name) {
-	if (name.includes(';')) {
+	if (name.indexOf(';') > 0) {
 		var layerArray = name.split(';');
 		for (var i = 0; i < layerArray.length; i++) {
 			var newLayerName = layerArray[i];
-			if (newLayerName.includes(',')) {
+			if (newLayerName.indexOf(',') > 0) {
 				var newTypeName = newLayerName.split(',');
 				newLayerName = newTypeName[0];
 			}
