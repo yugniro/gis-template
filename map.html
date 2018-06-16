@@ -19,6 +19,7 @@
             display: flex;
             height: 100%;
             width: 100%;
+            flex-wrap: wrap;
         }
         #azniirkh-map {
             height: 100%;
@@ -28,6 +29,17 @@
             height: 100%;
             flex: 1;
         }
+        @media (max-width: 767px) {
+            #azniirkh-map {
+                flex: 1 100%;
+                height: 70%;
+            }
+            #azniirkh-legend {
+                flex: 0 100%;
+                height: 40%;
+            }
+        }
+
     </style>
 </head>
 <body>
