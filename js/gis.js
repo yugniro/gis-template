@@ -82,7 +82,11 @@ function addGeojsonGeometryObject(name, map, color) {
                         }
 
                         if (typeof feature.properties['biores'] != 'undefined' && feature.properties.biores.length > 0) {
-                            popuptext += '<p>Ихтиофауна: ' + feature.properties.biores + '</p>';
+                            popuptext += '<p>Ихтиофауна: ' + feature.properties.biores;
+                            if (typeof feature.properties['biores1'] != 'undefined' && feature.properties.biores1.length > 0) {
+                                popuptext += ' ' + feature.properties.biores1;
+                            }
+                            popuptext += '</p>';
                         }
 
                         //layer.bindTooltip(tooltext, {permanent: true});
