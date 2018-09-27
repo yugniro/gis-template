@@ -74,8 +74,18 @@
                             <small class="text-muted d-none d-sm-block">Водные объекты в зоне ответственности АзНИИРХ</small>
                             <div class="gis-element-items pl-2 d-none">
                                 <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="waters-rivers" data-toggle="lines" data-target="azniirkh_zones:rivers" data-color="#00cee4">
+                                    <label class="custom-control-label" for="waters-rivers">Реки</label>
+                                </div>
+
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="waters-lakes" data-toggle="lines" data-target="azniirkh_zones:lakes_reservoirs" data-color="#00cee4">
+                                    <label class="custom-control-label" for="waters-lakes">Озера и водохранилища</label>
+                                </div>
+
+                                <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="gis-rostov-waters" data-toggle="multilayer" data-target="azniirkh_zones:water-bodies-rostov,multipoly;azniirkh_zones:waterways-rostov,lines" data-color="#00cee4">
-                                    <label class="custom-control-label" for="gis-rostov-waters">Ростовская обл</label>
+                                    <label class="custom-control-label" for="gis-rostov-waters" style="color:lightgrey">Ростовская обл <sup style="color:brown">устаревш.</sup></label>
                                 </div>
                                 <!--<hr style="margin: 0;" />
                                 <div class="custom-control custom-checkbox">

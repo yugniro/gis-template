@@ -71,10 +71,20 @@ function addGeojsonGeometryObject(name, map, color) {
                         var popuptext = '<strong>' + String(feature.properties.name) + '</strong>';
 						if (feature.properties.desc) {
 							popuptext += '<br /><p>' + String(feature.properties.desc) + '</p>';
-						}
-                        if (typeof feature.properties['area'] != 'undefined') {
-                            popuptext += '<p>Площадь: ' + feature.properties.area + ' кв.км</p>'; 
                         }
+                        // parse rivers length if attribute "length_km" is exist and .len > 0
+                        if (typeof feature.properties['length_km'] != 'undefined') {
+                            if (feature.properties.length_km > 0) {
+                                popuptext += '<p>Протяженность: ' + feature.properties.length_km + 'км</p>';
+                            }
+                        } else if (typeof feature.properties['area'] != 'undefined') { // check if object area attribute is defined or calculateds
+                            popuptext += '<p>Площадь: ' + feature.properties.area + ' кв.км</p>';              
+                        }
+
+                        if (typeof feature.properties['biores'] != 'undefined' && feature.properties.biores.length > 0) {
+                            popuptext += '<p>Ихтиофауна: ' + feature.properties.biores + '</p>';
+                        }
+
                         //layer.bindTooltip(tooltext, {permanent: true});
                         layer.bindPopup(popuptext);
                     }
