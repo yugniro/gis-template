@@ -87,11 +87,6 @@
                                     <input type="checkbox" class="custom-control-input" id="gis-rostov-waters" data-toggle="multilayer" data-target="azniirkh_zones:water-bodies-rostov,multipoly;azniirkh_zones:waterways-rostov,lines" data-color="#00cee4">
                                     <label class="custom-control-label" for="gis-rostov-waters" style="color:lightgrey">Ростовская обл <sup style="color:brown">устаревш.</sup></label>
                                 </div>
-                                <!--<hr style="margin: 0;" />
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="show-all-rvu" data-toggle="checkall" data-target="rvu-rostov-areas,rvu-krasnodar-areas,rvu-stavropol-areas">
-                                    <label class="custom-control-label" for="show-all-rvu">показать все слои</label>
-                                </div>-->
                             </div>
                         </div>
                         <div class="gis-layer ml-2 pl-3">
@@ -252,6 +247,23 @@
     </div>
 </section>
 
+<!-- Modal tree element -->
+<div class="modal fade" id="modalTreeDisplay" tabindex="-1" role="dialog" aria-labelledby="modalTreeDisplay" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Параметры объекта: <span id="display-layer-name-span">unknown</span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            nothing there
+        </div>
+      </div>
+    </div>
+  </div>
+
     <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/leaflet/leaflet.js"></script>
@@ -280,7 +292,7 @@
             // visual display hidden elements
             $('.gis-group-layer').on('click', function(e) {
                 var clickedTargetName = $(e.target).prop('tagName');
-                if(clickedTargetName == "INPUT" || clickedTargetName === "LABEL")
+                if(clickedTargetName == "INPUT" || clickedTargetName === "LABEL" || clickedTargetName === "A")
                     return;
                 
                 var triggerDom = $(this).find('.gis-element-items');
@@ -296,6 +308,9 @@
                 var layerName = $(this).attr('data-target');
                 var layerType = $(this).attr('data-toggle');
                 var layerColor = $(this).attr('data-color');
+
+                // prepare safe name for additional id tree element display
+                var layerIdName = layerName.replace(":", "-_-");
                 
                 if (!layerName || layerName.length < 3 || !layerType || layerType.length < 3) {
                     return false;
@@ -310,14 +325,18 @@
 
                 // process display/hide layers from API geoserver
                 if (checked) {
+                    // if layer is always on the map - do not process action twice
                     if (layerName in enabledLayers && enabledLayers[layerName] === true) {
-                        return true; // do not load data if always used
+                        return true;
                     }
                     displayLayerType(layerType, layerName, map, layerColor);
                     enabledLayers[layerName] = true;
+                    // display tree button with "more" action
+                    $(this).parent().find('label').after(" <a href='javascript:void(0)' id='modaltree-"+layerIdName+"' class='modal-tree-display'>🗁</a>");
                 } else {
                     removeLayer(layerName);
                     enabledLayers[layerName] = false;
+                    $(this).parent().find("a#modaltree-"+layerIdName).remove();
                 }
             });
             // process zoom buttons
@@ -374,15 +393,77 @@
                     map.setZoom(zoomIdx);
                 }, 800);
             });
+
+            // display modal window on icon click
+            $(document).on('click', '.modal-tree-display', function(){
+                var treeId = $(this).attr('id');
+                var layerName = treeId.replace("-_-", ":").replace("modaltree-", "");
+                var modal = $('#modalTreeDisplay');
+                modal.find('#display-layer-name-span').text(layerName);
+
+                if (lay == 'undefined' || !(layerName in lay)) {
+                    modal.find('.modal-body').html('<p>Нет информации о данном слое</p>');
+                    modal.show();
+                    return;
+                }
+
+                var modalbody = modal.find('.modal-body');
+                var html = '<table class="table table-striped">';
+                html += '<thead><tr><td>ID</td><td>Название</td><td>Действия</td></tr></thead>';
+                html += '<tbody>';
+                
+                var lyr = lay[layerName];
+                for (var k in lyr._layers) {
+                    var feature = lyr._layers[k];
+                    var fulltext = feature._popup.getContent();
+                    var div = document.createElement('div');
+                    div.innerHTML = fulltext;
+                    var text = div.getElementsByTagName('strong')[0].innerText;
+                    if (text == 'undefined' || text == '') {
+                        text = 'unknown';
+                    }
+
+                    var featureId = feature.feature.id;
+                    var action = '<a href="javascript:void(0)" class="moveToLeafletLayer" data-group="'+layerName+'" data-id="layer-' + feature._leaflet_id + '">Просмотр</a>';
+
+                    html += '<tr><td>'+featureId+'</td><td>' + text + '</td><td>' + action + '</td></tr>';
+                    //console.log(feature);
+                }
+
+                html += '</tbody>';
+                html += '</table>';
+
+                modalbody.html(html);
+                modal.modal('show');
+            });
+
+            // process click event on legend features - zoom to layer and show popup
+            $(document).on('click', '.moveToLeafletLayer', function(){
+                var oid = $(this).attr('data-id').replace('layer-', '');
+                var layerName = $(this).attr('data-group');
+
+                var lyr = lay[layerName];
+                var found = false;
+                for (var k in lyr._layers) {
+                    var item = lyr._layers[k];
+                    // found required layer
+                    if (item._leaflet_id == oid) {
+                        found = true;
+                        item.openPopup();
+                        map.fitBounds(item.getBounds());
+                        $('#modalTreeDisplay').modal('hide');
+                    }
+                }
+            });
         });
         
         // fix bootstrap custom-checkbox bug - uncheck all boxes on page overload
         $('.custom-control-input').prop('checked', false);
         $('#gis-tile-yandex-scheme').prop('checked', true);
 
-        map.on('click', function (e) {
-            alert("Широта: " + e.latlng.lat.toFixed(6) + ", долгота: " + e.latlng.lng.toFixed(6));
-        });
+        //map.on('click', function (e) {
+        //    alert("Широта: " + e.latlng.lat.toFixed(6) + ", долгота: " + e.latlng.lng.toFixed(6));
+        //});
     </script>
 </body>
 </html>
