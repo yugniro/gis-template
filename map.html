@@ -94,19 +94,19 @@
                                 </div>-->
                             </div>
                         </div>
-						<div class="gis-layer ml-2 pl-3">
+                        <div class="gis-layer ml-2 pl-3">
                             <div class="gis-element">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="gis-oopt" data-toggle="multipoly" data-target="azniirkh_zones:oopt" data-color="#e21776">
-                                    <label class="custom-control-label" for="gis-oopt">Особо охраняемые зоны</label>
+                                    <input type="checkbox" class="custom-control-input" id="gis-azniirkh-zone" data-toggle="multipoly" data-target="azniirkh_zones:azniirkh_zone" data-color="#e24418">
+                                    <label class="custom-control-label" for="gis-azniirkh-zone">Зона ответственности АзНИИРХ</label>
                                 </div>
                             </div>
                         </div>
                         <div class="gis-layer ml-2 pl-3">
                             <div class="gis-element">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="gis-azniirkh-zone" data-toggle="multipoly" data-target="azniirkh_zones:azniirkh_zone" data-color="#e24418">
-                                    <label class="custom-control-label" for="gis-azniirkh-zone">Зона ответственности АзНИИРХ</label>
+                                    <input type="checkbox" class="custom-control-input" id="rpu-all-zones" data-toggle="multipoly" data-target="azniirkh_zones:rpu" data-color="#e0b90d">
+                                    <label class="custom-control-label" for="rpu-all-zones">Рыбопромысловые участки</label>
                                 </div>
                             </div>
                         </div>
@@ -133,11 +133,73 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="gis-group-layer ml-2 pl-3">
+                            <div class="gis-element-title">Морские режимные районы</div>
+                            <small class="text-muted d-none d-sm-block">Режимные районы Азовского и Черного моря с запретами и ограничениями судоходства</small>
+                            <div class="gis-element-items pl-2 d-none">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="restrict-zapret-dlya-plavaniya" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zapretnye_dlya_plavaniya" data-color="#ff6f01">
+                                    <label class="custom-control-label" for="restrict-zapret-dlya-plavaniya">Районы, запретные для плавания</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="restrict-zapret-dlya-ostanovki" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zapretnye_dlya_ostanovki" data-color="#ff6f01">
+                                    <label class="custom-control-label" for="restrict-zapret-dlya-ostanovki">Районы, запретные для остановки, постановки на якорь, лова рыбы придонными орудиями лова, подводных и дноуглубительных работ, взрывных работ и плавания с вытравленной якорь-цепью</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="restrict-zapret-vremenii-plavanie" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_vremenno_opasnye" data-color="#ff6f01">
+                                    <label class="custom-control-label" for="restrict-zapret-vremenii-plavanie">Районы, временно опасные для плавания</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="restrict-nomernie-raiony" data-toggle="multipoly" data-target="azniirkh_zones:Nomernye_raiony" data-color="#ff6f01">
+                                    <label class="custom-control-label" for="restrict-nomernie-raiony">Номерные районы (для учений флота)</label>
+                                </div>
+                                <hr style="margin: 0;" />
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="show-all-restrict" data-toggle="checkall" data-target="restrict-zapret-dlya-plavaniya,restrict-zapret-dlya-ostanovki,restrict-zapret-vremenii-plavanie,restrict-nomernie-raiony">
+                                    <label class="custom-control-label" for="show-all-restrict">показать все слои</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gis-group-layer ml-2 pl-3">
+                            <div class="gis-element-title">Районы, опасные в навигационном отношении</div>
+                            <small class="text-muted d-none d-sm-block">Районы Азовского и Черного моря опасные в навигационном отношении для судоходства</small>
+                            <div class="gis-element-items pl-2 d-none">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="dangerous-sledyet-izbegat" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_kotoryh_sleduet_izbegat" data-color="#ba0808">
+                                    <label class="custom-control-label" for="dangerous-sledyet-izbegat">Районы, которые судам следует избегать</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="dangerous-vzryv-veschestv" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zatopl_vzryv_veschestv" data-color="#ba0808">
+                                    <label class="custom-control-label" for="dangerous-vzryv-veschestv">Районы затопленных взрывчатых веществ</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="dangerous-svalka-grunta-deistv" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_svalki_grunta_deistv" data-color="#ba0808">
+                                    <label class="custom-control-label" for="dangerous-svalka-grunta-deistv">Районы свалки грунта (действующие)</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="dangerous-svalka-grunta-old" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_svalki_grunta_byvshie" data-color="#ba0808">
+                                    <label class="custom-control-label" for="dangerous-svalka-grunta-old">Районы свалки грунта (бывшие)</label>
+                                </div>
+                                <hr style="margin: 0;" />
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="show-all-dangerous" data-toggle="checkall" data-target="dangerous-sledyet-izbegat,dangerous-vzryv-veschestv,dangerous-svalka-grunta-deistv,dangerous-svalka-grunta-old">
+                                    <label class="custom-control-label" for="show-all-dangerous">показать все слои</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="gis-layer ml-2 pl-3">
                             <div class="gis-element">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rpu-all-zones" data-toggle="multipoly" data-target="azniirkh_zones:rpu" data-color="#e0b90d">
-                                    <label class="custom-control-label" for="rpu-all-zones">Рыбопромысловые участки</label>
+                                    <input type="checkbox" class="custom-control-input" id="restrict-oldest-now-safity" data-toggle="multipoly" data-target="azniirkh_zones:Byvshie_opasnie_ot_min_raiony" data-color="#365ec4">
+                                    <label class="custom-control-label" for="restrict-oldest-now-safity">Бывшие опасные от мин районы, открытые для плавания судов</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gis-layer ml-2 pl-3">
+                            <div class="gis-element">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="gis-oopt" data-toggle="multipoly" data-target="azniirkh_zones:oopt" data-color="#e21776">
+                                    <label class="custom-control-label" for="gis-oopt">Особо охраняемые зоны</label>
                                 </div>
                             </div>
                         </div>
