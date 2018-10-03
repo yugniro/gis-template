@@ -258,7 +258,18 @@
           </button>
         </div>
         <div class="modal-body">
-            nothing there
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="modal-search-field" placeholder="Поисковой запрос ..." aria-label="Поисковой запрос" aria-describedby="button-make-search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" id="modal-search-btn" type="button" id="button-make-search">Найти</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modal-found-text" class="d-none">Найдено: <span id="modal-found-count">0</span></div>
+            <div class="modal-feature"></div>
         </div>
       </div>
     </div>
@@ -332,7 +343,7 @@
                     displayLayerType(layerType, layerName, map, layerColor);
                     enabledLayers[layerName] = true;
                     // display tree button with "more" action
-                    $(this).parent().find('label').after(" <a href='javascript:void(0)' id='modaltree-"+layerIdName+"' class='modal-tree-display'>🗁</a>");
+                    $(this).parent().find('label').after(" <a href='javascript:void(0)' id='modaltree-"+layerIdName+"' class='modal-tree-display'>🔎</a>");
                 } else {
                     removeLayer(layerName);
                     enabledLayers[layerName] = false;
@@ -402,14 +413,14 @@
                 modal.find('#display-layer-name-span').text(layerName);
 
                 if (lay == 'undefined' || !(layerName in lay)) {
-                    modal.find('.modal-body').html('<p>Нет информации о данном слое</p>');
+                    modal.find('.modal-feature').html('<p>Нет информации о данном слое</p>');
                     modal.show();
                     return;
                 }
 
-                var modalbody = modal.find('.modal-body');
-                var html = '<table class="table table-striped">';
-                html += '<thead><tr><td>ID</td><td>Название</td><td>Действия</td></tr></thead>';
+                var modalbody = modal.find('.modal-feature');
+                var html = '<div class="table-responsive"><table class="table" id="modal-tree-table">';
+                html += '<thead><tr><td>Название</td><td>Действия</td></tr></thead>';
                 html += '<tbody>';
                 
                 var lyr = lay[layerName];
@@ -426,12 +437,12 @@
                     var featureId = feature.feature.id;
                     var action = '<a href="javascript:void(0)" class="moveToLeafletLayer" data-group="'+layerName+'" data-id="layer-' + feature._leaflet_id + '">Просмотр</a>';
 
-                    html += '<tr><td>'+featureId+'</td><td>' + text + '</td><td>' + action + '</td></tr>';
+                    html += '<tr id="tree-row-'+feature._leaflet_id+'"><td class="modal-search-index">' + text + '</td><td>' + action + '</td></tr>';
                     //console.log(feature);
                 }
 
                 html += '</tbody>';
-                html += '</table>';
+                html += '</table></div>';
 
                 modalbody.html(html);
                 modal.modal('show');
@@ -454,6 +465,34 @@
                         $('#modalTreeDisplay').modal('hide');
                     }
                 }
+            });
+
+            // process modal search
+            $('#modal-search-btn').on('click', function(){
+                var query = $('#modal-search-field').val();
+                if (query == '' || query.length < 3) {
+                    alert("Запрос слишком короткий!");
+                    return;
+                }
+                query = query.toLowerCase();
+
+                var tableSelector = $('#modal-tree-table');
+                var foundIdx = 0;
+                tableSelector.find('td.modal-search-index').each(function(){
+                    var row = this.innerText.toLowerCase();
+                    // check if row contains search query
+                    if (row.indexOf(query) !== -1) {
+                        var foundId = $(this).parent().attr('id');
+                        $(this).parent().addClass('alert-success');
+                        foundIdx++;
+                        //$('body').scrollTo('#' + foundId);
+                    } else {
+                        $(this).parent().removeClass('alert-success');
+                    }
+                });
+                
+                $('#modal-found-text').removeClass("d-none");
+                $('#modal-found-count').text(foundIdx);
             });
         });
         
