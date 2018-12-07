@@ -1,5 +1,6 @@
 var lay = {};
-var owsurl = 'https://map.azniirkh.ru/geoserver/azniirkh_zones/ows';
+//var owsurl = 'https://map.azniirkh.ru/geoserver/azniirkh_zones/ows';
+var owsurl = 'https://map.azniirkh.ru/geoserver/';
 
 function displayLayerType(type, name, map, color) {
     var url;
@@ -50,13 +51,15 @@ function displayLayerType(type, name, map, color) {
  * @param map
  */
 function addGeojsonGeometryObject(name, map, color) {
+    var namespace = name.split(':')[0];
     $.ajax({
-        url: owsurl + '?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
+        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
         dataType: 'jsonp',
         jsonpCallback: 'parseResponse',
         success: function(data) {
             var layer = L.geoJSON(data, {
                 onEachFeature: function(feature, layer) {
+                    console.log('feature parsing begin');
                     if (feature.geometry && feature.geometry.coordinates && feature.geometry.coordinates[0][0].length >= 4) {
                         var poly = turf.polygon(feature.geometry.coordinates[0]);
                         var parea = turf.area(poly);
@@ -112,9 +115,10 @@ function addGeojsonGeometryObject(name, map, color) {
  * @param map
  */
 function addGeojsonPoints(name, map) {
+    var namespace = name.split(':')[0];
     // load layer over jsonp
     $.ajax({
-        url: owsurl + '?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
+        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
         dataType: 'jsonp',
         jsonpCallback: 'parseResponse',
         success: function(data) {

@@ -7,9 +7,7 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/map.css" rel="stylesheet">
-    <link href="vendor/leaflet/leaflet.css" rel="stylesheet">
+    <!-- base grid CSS -->
     <style>
         html,body {
             width: 100%;
@@ -25,9 +23,10 @@
             height: 100%;
             flex: 1 50%;
         }
-        #azniirkh-legend {
+       #azniirkh-legend {
             height: 100%;
-            flex: 1;
+            flex: 1.25;
+            overflow: auto;
         }
         @media (max-width: 767px) {
             #azniirkh-map {
@@ -39,8 +38,11 @@
                 height: 40%;
             }
         }
-
     </style>
+
+    <!-- Custom styles for this template -->
+    <link href="css/map.css" rel="stylesheet">
+    <link href="vendor/leaflet/leaflet.css" rel="stylesheet">
 </head>
 <body>
 
@@ -213,6 +215,153 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="gis-group-layer ml-2 pl-3" id="show-warning">
+                            <div class="gis-element-title">Любительские правила рыболовства</div>
+                            <small class="text-muted d-none d-sm-block">Графическая интерпритация любительских правил рыболовства</small>
+                            
+                            <!-- submenu 46 -->
+                            <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
+                                <div class="gis-subgroup-lvl1-title">46. Районы, запретные для добычи (вылова) водных биоресурсов</div>
+                                <div class="custom-control custom-checkbox pl-2">
+                                    <input type="checkbox" class="custom-control-input" id="fr-46" data-toggle="multipoly" data-target="fishing_rules:46" data-color="#f46842">
+                                    <label class="custom-control-label" for="fr-46">В Азовском море, Керченском проливе и Таганрогском заливе - на расстоянии более 1,5 км от берега</label>
+                                </div>
+                                
+                                <!-- sub-sub menu 46.1 -->
+                                <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                    <div class="gis-subgroup-lvl2-title">п. 46.1. В водных объектах рыбохозяйственного значения Ростовской области:</div>
+                                    <div class="gis-subgroup-lvl2-content d-none">
+                                        <small class="text-muted">Запрещена добыча (вылов) всех видов биоресурсов</small>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-a" data-toggle="multipoly" data-target="fishing_rules:46_1_1_a" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-a">п. 46.1.1.а. в водных объектах рыбохозяйственного значения Донского запретного пространства</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-b" data-toggle="multipoly" data-target="fishing_rules:46_1_1_b" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-b">п. 46.1.1.б. в Миусском лимане</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-c" data-toggle="multipoly" data-target="fishing_rules:46_1_1_c" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-c">п. 46.1.1.в. в реке Дон</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox text-muted">
+                                            <input type="checkbox" class="custom-control-input" />
+                                            <label class="custom-control-label">п. 46.1.1.г. в реках протяженностью до 10 км - с моторных судов и плавучих средств</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-d" data-toggle="multipoly" data-target="fishing_rules:46_1_1_d" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-d">п. 46.1.1.д. на расстоянии менее 500 м от Болотовского водосброса Веселовского водохранилища</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-e" data-toggle="multipoly" data-target="fishing_rules:46_1_1_e" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-e">п. 46.1.1.е. в акватории Цимлянского государственного природного заказника</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-f" data-toggle="multipoly" data-target="fishing_rules:46_1_1_f" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-f">п. 46.1.1.ж. в балке Большая Садковка в Веселовском водохранилище</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-g" data-toggle="multipoly" data-target="fishing_rules:46_1_1_g" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-g">п. 46.1.1.з. в балке Малая Садковка в Веселовском водохранилище</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-h" data-toggle="multipoly" data-target="fishing_rules:46_1_1_h" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-h">п. 46.1.1.и. в балке Куцая в Веселовском водохранилище</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-i" data-toggle="multipoly" data-target="fishing_rules:46_1_1_i" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-i">п. 46.1.1.к. в балке Бугинская</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-j" data-toggle="multipoly" data-target="fishing_rules:46_1_1_j" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-1-j">п. 46.1.1.л. в акватории Веселовского водохранилища</label>
+                                        </div>
+                                        <small class="text-muted">Запрещена добыча (вылов) раков пресноводных</small>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-2" data-toggle="multipoly" data-target="fishing_rules:46_1_2" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-1-2">п. 46.1.2. в реке Койсуг (от устья до впадения в нее реки Чмутовой)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /sub-sub menu 46.1 -->
+                                
+                                <!-- sub-sub menu 46.2 -->
+                                <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                    <div class="gis-subgroup-lvl2-title">п. 46.2. В водных объектах рыбохозяйственного значения Краснодарского края и Республики Адыгея:</div>
+                                    <div class="gis-subgroup-lvl2-content d-none">
+                                        <small class="text-muted">Запрещена добыча (вылов) всех видов водных биоресурсов:</small>
+                                        <div class="custom-control custom-checkbox text-muted">
+                                            <input type="checkbox" class="custom-control-input" />
+                                            <label class="custom-control-label">п. 46.2.а. перед устьями рек на расстоянии менее 500 м в обе стороны от устьев</label>
+                                        </div>
+                                        
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-2-b" data-toggle="multipoly" data-target="fishing_rules:46_2_b" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-2-b">п. 46.2.б. в межлиманных соединениях и гирлах</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /sub-sub menu 46.2 -->
+                                
+                                <!-- sub-sub menu 46.3 -->
+                                <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                    <div class="gis-subgroup-lvl2-title">п. 46.3. В водных объектах рыбохозяйственного значения Ставропольского края:</div>
+                                    <div class="gis-subgroup-lvl2-content d-none">
+                                        <small class="text-muted">Запрещена добыча (вылов) всех видов водных биоресурсов:</small>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-3-a" data-toggle="multipoly" data-target="fishing_rules:46_3_a" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-3-a">п. 46.3.а. в чаше консольного водосброса Невинномысского канала</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-3-b" data-toggle="multipoly" data-target="fishing_rules:46_3_b" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-3-b">п. 46.3.б. в реке Егорлык от ее истока до впадения в Сенгилеевское водохранилище</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /sub-sub menu 46.3 -->
+                                
+                                <!-- sub-sub menu 46.4 -->
+                                <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                    <div class="gis-subgroup-lvl2-title">п. 46.4. В водных объектах рыбохозяйственного значения Карачаево-Черкесской Республики:</div>
+                                    <div class="gis-subgroup-lvl2-content d-none">
+                                        <div class="custom-control custom-checkbox text-muted">
+                                            <input type="checkbox" class="custom-control-input" />
+                                            <label class="custom-control-label">п. 46.4.а. запрещена добыча (вылов) всех видов водных биоресурсов: перед устьями рек на расстоянии менее 500 м в обе стороны от устьев</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-46-4-b" data-toggle="multipoly" data-target="fishing_rules:46_4_b" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-46-4-b">п. 46.4.б. Запрещена добыча (вылов) форели в реках</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /sub-sub menu 46.4 -->
+                            </div>
+
+                            <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
+                                <div class="gis-subgroup-lvl1-title">47. Запретные для добычи (вылова) водных биоресурсов сроки (периоды)</div>
+                                <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                    <div class="gis-subgroup-lvl2-title">п. 47.1. с 15 сентября по 30 ноября - форели в водных объектах рыбохозяйственного значения, расположенных в административных границах :</div>
+                                    <div class="gis-subgroup-lvl2-content d-none">
+                                        <small class="text-muted">Запрещена добыча (вылов) всех видов биоресурсов</small>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-47-1-1-a" data-toggle="lines" data-target="fishing_rules:47_1_a" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-47-1-1-a">п. 47.1.а. река Кубань: от Красного моста Даутского заказника вверх по течению до истока</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-47-1-1-b" data-toggle="lines" data-target="fishing_rules:47_1_b" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-47-1-1-b">п. 47.1.б. река Теберда: от аула Нижняя Теберда вверх по течению до истока</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fr-47-1-1-c" data-toggle="lines" data-target="fishing_rules:47_1_c" data-color="#f46842">
+                                            <label class="custom-control-label" for="fr-47-1-1-c">п. 47.1.в. река Уруп: ниже устья реки Себельдинка</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                   </div>
                   <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
@@ -295,6 +444,7 @@
     <script src="vendor/leaflet/leaflet.js"></script>
     <script src='vendor/turf/turf.min.js'></script>
     <script src="js/gis.js"></script>
+    <script src="js/jquery-features.js"></script>
 
     <script>
         var enabledLayers = {};
@@ -312,204 +462,6 @@
         ).addTo(map);
         // change map projection. Yandex: L.CRS.EPSG3395
         map.options.crs = L.CRS.EPSG3395;
-
-        // execute after-load features with jquery
-        $(function(){
-            // visual display hidden elements
-            $('.gis-group-layer').on('click', function(e) {
-                var clickedTargetName = $(e.target).prop('tagName');
-                if(clickedTargetName == "INPUT" || clickedTargetName === "LABEL" || clickedTargetName === "A")
-                    return;
-                
-                var triggerDom = $(this).find('.gis-element-items');
-                if (triggerDom.hasClass('d-none')) {
-                    $('.gis-element-items').addClass('d-none');
-                }
-                triggerDom.toggleClass('d-none');
-            });
-            // process geojson data display or hide based on checkbox status
-            $('input[type=checkbox]').on('change', function(){
-                var checked = $(this).is(':checked');
-
-                var layerName = $(this).attr('data-target');
-                var layerType = $(this).attr('data-toggle');
-                var layerColor = $(this).attr('data-color');
-
-                // prepare safe name for additional id tree element display
-                var layerIdName = layerName.replace(":", "-_-");
-                
-                if (!layerName || layerName.length < 3 || !layerType || layerType.length < 3) {
-                    return false;
-                }
-                
-                // process "check all" checkbox features
-                if (layerType == "checkall") {
-                    layerName.split(",").forEach(function(item){
-                        $('#' + item).prop('checked', checked).trigger('change');
-                    });
-                }
-
-                // process display/hide layers from API geoserver
-                if (checked) {
-                    // if layer is always on the map - do not process action twice
-                    if (layerName in enabledLayers && enabledLayers[layerName] === true) {
-                        return true;
-                    }
-                    displayLayerType(layerType, layerName, map, layerColor);
-                    enabledLayers[layerName] = true;
-                    // display tree button with "more" action
-                    $(this).parent().find('label').after(" <a href='javascript:void(0)' id='modaltree-"+layerIdName+"' class='modal-tree-display'>🔎</a>");
-                } else {
-                    removeLayer(layerName);
-                    enabledLayers[layerName] = false;
-                    $(this).parent().find("a#modaltree-"+layerIdName).remove();
-                }
-            });
-            // process zoom buttons
-            $('#gis-zoom-azov').on('click', function(){
-                map.setView([46.1, 36.5], 8);
-            });
-            $('#gis-zoom-blacksea').on('click', function(){
-                map.setView([43.8, 36.2], 8);
-            });
-            $('#gis-zoom-rostov').on('click', function(){
-                map.setView([47.2, 39.7], 9);
-            });
-            $('#gis-zoom-krasnodar').on('click', function(){
-                map.setView([45.0, 38.9], 9);
-            });
-            
-            // change tile layer
-            $('input[name=gis-tile]:radio').change(function(){
-                map.removeLayer(bg);
-                var mid = $(this).attr('id');
-                if (mid === 'gis-tile-azniirkh') {
-                    bg = L.tileLayer.wms('https://map.azniirkh.ru/geoserver/azniirkh_zones/wms?', {
-                        layers: 'base_layer_250_02_egps3857_geotiff',
-                        attribution: '&copy; <a href="http://azniirkh.ru">AzNIIRKH</a>'
-                    }).addTo(map);
-                    map.options.crs = L.CRS.EPSG3857;
-                }
-                if (mid === 'gis-tile-yandex') {
-                    bg = L.tileLayer(
-                      'https://sat{s}.maps.yandex.net/tiles?l=sat&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU', {
-                        subdomains: ['01', '02', '03', '04'],
-                        attribution: '<a href="https://yandex.ru" target="_blank">Яндекс</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>',
-                        reuseTiles: true,
-                        updateWhenIdle: false
-                      }
-                    ).addTo(map)
-                    map.options.crs = L.CRS.EPSG3395;
-                }
-                if (mid === 'gis-tile-yandex-scheme') {
-                    bg = L.tileLayer(
-                      'https://vec{s}.maps.yandex.net/tiles?l=map&v=18.06.17-0&z={z}&x={x}&y={y}&lang=ru_RU', {
-                        subdomains: ['01', '02', '03', '04'],
-                        attribution: '<a href="https://yandex.ru" target="_blank">Яндекс</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>',
-                        reuseTiles: true,
-                        updateWhenIdle: false
-                      }
-                    ).addTo(map)
-                    map.options.crs = L.CRS.EPSG3395;
-                }
-                
-                var zoomIdx = map.getZoom();
-                map.setZoom(zoomIdx+1);
-                setTimeout(function(){
-                    map.setZoom(zoomIdx);
-                }, 800);
-            });
-
-            // display modal window on icon click
-            $(document).on('click', '.modal-tree-display', function(){
-                var treeId = $(this).attr('id');
-                var layerName = treeId.replace("-_-", ":").replace("modaltree-", "");
-                var modal = $('#modalTreeDisplay');
-                modal.find('#display-layer-name-span').text(layerName);
-
-                if (lay == 'undefined' || !(layerName in lay)) {
-                    modal.find('.modal-feature').html('<p>Нет информации о данном слое</p>');
-                    modal.show();
-                    return;
-                }
-
-                var modalbody = modal.find('.modal-feature');
-                var html = '<div class="table-responsive"><table class="table" id="modal-tree-table">';
-                html += '<thead><tr><td>Название</td><td>Действия</td></tr></thead>';
-                html += '<tbody>';
-                
-                var lyr = lay[layerName];
-                for (var k in lyr._layers) {
-                    var feature = lyr._layers[k];
-                    var fulltext = feature._popup.getContent();
-                    var div = document.createElement('div');
-                    div.innerHTML = fulltext;
-                    var text = div.getElementsByTagName('strong')[0].innerText;
-                    if (text == 'undefined' || text == '') {
-                        text = 'unknown';
-                    }
-
-                    var featureId = feature.feature.id;
-                    var action = '<a href="javascript:void(0)" class="moveToLeafletLayer" data-group="'+layerName+'" data-id="layer-' + feature._leaflet_id + '">Просмотр</a>';
-
-                    html += '<tr id="tree-row-'+feature._leaflet_id+'"><td class="modal-search-index">' + text + '</td><td>' + action + '</td></tr>';
-                    //console.log(feature);
-                }
-
-                html += '</tbody>';
-                html += '</table></div>';
-
-                modalbody.html(html);
-                modal.modal('show');
-            });
-
-            // process click event on legend features - zoom to layer and show popup
-            $(document).on('click', '.moveToLeafletLayer', function(){
-                var oid = $(this).attr('data-id').replace('layer-', '');
-                var layerName = $(this).attr('data-group');
-
-                var lyr = lay[layerName];
-                var found = false;
-                for (var k in lyr._layers) {
-                    var item = lyr._layers[k];
-                    // found required layer
-                    if (item._leaflet_id == oid) {
-                        found = true;
-                        item.openPopup();
-                        map.fitBounds(item.getBounds());
-                        $('#modalTreeDisplay').modal('hide');
-                    }
-                }
-            });
-
-            // process modal search
-            $('#modal-search-btn').on('click', function(){
-                var query = $('#modal-search-field').val();
-                if (query == '' || query.length < 3) {
-                    alert("Запрос слишком короткий!");
-                    return;
-                }
-                query = query.toLowerCase();
-
-                var tableSelector = $('#modal-tree-table');
-                var foundIdx = 0;
-                tableSelector.find('td.modal-search-index').each(function(){
-                    var row = this.innerText.toLowerCase();
-                    // check if row contains search query
-                    if (row.indexOf(query) !== -1) {
-                        var foundId = $(this).parent().attr('id');
-                        $(this).parent().addClass('alert-success');
-                        foundIdx++;
-                        //$('body').scrollTo('#' + foundId);
-                    } else {
-                        $(this).parent().removeClass('alert-success');
-                    }
-                });
-                
-                $('#modal-found-text').removeClass("d-none");
-                $('#modal-found-count').text(foundIdx);
-            });
-        });
         
         // fix bootstrap custom-checkbox bug - uncheck all boxes on page overload
         $('.custom-control-input').prop('checked', false);
