@@ -35,3 +35,14 @@
 .gis-active {
     border-left: 3px solid #289d43;
 }
+
+/** map usability features */
+.gis-subgroup-lvl1-title:hover, .gis-subgroup-lvl2-title:hover {
+    text-decoration: underline;
+    text-decoration-color: #0f774c;
+    text-decoration-style: dashed;
+    cursor: pointer;
+}
+.gis-group-layer {
+    cursor: pointer;
+}
