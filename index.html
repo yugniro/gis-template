@@ -19,18 +19,16 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">АзНИИРХ Карта</a>
+        <a class="navbar-brand" href="/">АзНИИРХ Карта</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Онлайн карта</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Авторы</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#changelogModal">История изменений</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#authorsModal">Авторы</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#insertModal">Сотрудничество</a></li>
                 <li class="nav-item"><a class="nav-link" href="http://azniirkh.ru/">Сайт АзНИИРХ</a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -44,11 +42,11 @@
 
 <footer class="text-muted pt-1 pb-0">
     <div class="container-fluid">
-        <p>&copy; 2018, АзНИИРХ Онлайн Карта. <span style="color:#873a27">На карте отображаются данные, предоставленные сотрудниками АзНИИРХ.</span></p>
+        <p>&copy; 2018-2019, АзНИИРХ Онлайн Карта. Проект разработан <a href="#" data-toggle="modal" data-target="#authorsModal">отделом информационно-математических технологий</a>, АзНИИРХ</p>
     </div>
 </footer>
 
-<!-- Modal -->
+<!-- Modal auth -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -79,6 +77,219 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
                 <button type="button" class="btn btn-primary">Войти</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal authors -->
+<div class="modal fade" id="authorsModal" tabindex="-1" role="dialog" aria-labelledby="authorsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="authorsModalLabel">Разработчики и авторы проекта</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td>ФИО</td>
+                            <td>Участие</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Кульба С.Н.</td>
+                            <td>Руководитель проекта</td>
+                        </tr>
+                        <tr>
+                            <td>Смирнов С.С.</td>
+                            <td>Разработка и управление GIS данными</td>
+                        </tr>
+                        <tr>
+                            <td>Крискевич Л.В.</td>
+                            <td>Разработка и управление GIS данными</td>
+                        </tr>
+                        <tr>
+                            <td>Пятинский М.М.</td>
+                            <td>Программирование и системное администрирование</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal changelog -->
+<div class="modal fade" id="changelogModal" tabindex="-1" role="dialog" aria-labelledby="changelogModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changelogModalLabel">История разработки проекта</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">История изменений лишь кратко и по сути описывает изменения, вносимые в проект.</p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td>Дата(d.m.Y)</td>
+                            <td>Изменения</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>11.04.2019</td>
+                            <td>
+                                Улучшено отображение и группировка разделов любительских и промышленного рыболовства <br />
+                                Добавлены разделы авторы, история изменений, сотрудничество для онлайн карты
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.04.2019</td>
+                            <td>
+                                Добавлены слои и группы слоев: промышленные правила рыболовства <br />
+                                Исправлены ошибки в отображении мульти-слоев в разделе любительское рыболовство
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>18.01.2019</td>
+                            <td>
+                                Добавлены слои и группы слоев: любительские правила рыболовства ($ 47)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12.12.2018</td>
+                            <td>
+                                Улучшен алгоритм отображения мульти-дерева разделов
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>04.12.2018</td>
+                            <td>
+                                Реализован алгоритм отображения мульти-вложенной структуры разделов легенды карты <br />
+                                Добавлены слои и группы слоев: любительские правила рыболовства ($ 46)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>15.11.2018</td>
+                            <td>
+                                Добавлены слои и группы: расположение орудий стац. прибрежного лова <br />
+                                Исправлена ошибка обработки отображения группы слоев
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10.10.2018</td>
+                            <td>
+                                Переработана логика построения деревьев слоев в легенде карты <br />
+                                Добавлена библиотека индексации и поиска по слоям и их содержимым <br />
+                                Добавлены функциональные возможности просмотра атрибутов слоя или группы слоев
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>30.09.2018</td>
+                            <td>
+                                Добавлены группы слоев: морские режимные районы, районы опасные в навигации, особо охраняемые зоны
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>30.09.2018</td>
+                            <td>
+                                Добавлены группы слоев: морские режимные районы, районы опасные в навигации, особо охраняемые зоны
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>05.08.2018</td>
+                            <td>
+                                Улучшена работа сетки карты с учетом адаптивности верстки <br />
+                                Добавлена совместимость с браузерами IE 10, 11 версии <br />
+                                Исправлены ошибки обработки осутствующей атрибутивной информации
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.07.2018</td>
+                            <td>
+                                Улучшена обработка атрибутивной информации, отображение координат <br />
+                                Добавлены подложки яндекс.карт (схема, спутник)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>25.06.2018</td>
+                            <td>
+                                Добавлена вомозножность обработки мультислоев <br />
+                                Добавлены слои: водные объекты
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10.06.2018</td>
+                            <td>
+                                Добавлены слои: особо охраняемые зоны, зона ответственности азниирх, рыбоводные участки
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.06.2018</td>
+                            <td>
+                                Добавлена поддержка модуля мат.вычислений геом. объектов - turf <br />
+                                Реализована собственная спутниковая подложка карты для юга РФ <br />
+                                Разработан интерфейс работы с картой и мобильная версия карты
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12.05.2018</td>
+                            <td>
+                                Разработана библиотека для взаимодействия с GeoServer.API <br />
+                                Разработан модуль отображения данных на подложках leaflet
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.05.2018</td>
+                            <td>
+                                Реализация каркаса проекта на bootstrap 4 <br />
+                                Имплементация библиотек leaflet
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.04.2018</td>
+                            <td>
+                                Составление ТЗ <br />
+                                Архитектурное проектирование <br />
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal authors -->
+<div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insertModalLabel">Сотрудничество и использование карты АзНИИРХ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Сводка</h3>
+                <p>В рамках реализации проекта "Онлайн карта зон ответственности АзНИИРХ" разработаны функциональные возможности по внедрению карты на сайты-партнеры АзНИИРХ.</p>
+                <p>Вы можете использовать и распространять онлайн карту без каких-либо ограничений при соблюдении требования указания ссылки на авторов и источник </p>
+                <h3>Техническая информация</h3>
+                <p>Вы можете вставить онлайн-карту азниирх в любое место своего сайта при помощи следующего программного кода html:</p>
+                <pre><code>&lt;iframe src="https://map.azniirkh.ru/map.html" style="border:none;width:100%;height: 600px;"&gt;&lt;/iframe&gt;</code></pre>
+                <p>Пример внедрения на сайт можно просмотреть <a href="/test.html" target="_blank">по ссылке</a></p>
             </div>
         </div>
     </div>
