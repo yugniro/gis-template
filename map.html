@@ -216,13 +216,13 @@
                             </div>
                         </div>
 
-                        <div class="gis-group-layer ml-2 pl-3" id="show-warning">
-                            <div class="gis-element-title">Любительские правила рыболовства</div>
-                            <small class="text-muted d-none d-sm-block">Графическая интерпретация любительских правил рыболовства</small>
+                        <div class="gis-group-layer ml-2 pl-3" id="show-amauter-warning">
+                            <div class="gis-element-title">Правила любительского рыболовства</div>
+                            <small class="text-muted d-none d-sm-block">Графическая интерпретация правил любительского рыболовства</small>
                             
                             <!-- submenu 46 -->
                             <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
-                                <div class="gis-subgroup-lvl1-title">46. Районы, запретные для добычи (вылова) водных биоресурсов</div>
+                                <div class="gis-subgroup-lvl1-title">46. <span class="text-danger">Районы</span>, <span class="text-danger">запретные</span> для добычи (вылова) водных биоресурсов</div>
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="fr-46" data-toggle="multipoly" data-target="fishing_rules:46" data-color="#f46842" />
                                     <label class="custom-control-label" for="fr-46">В Азовском море, Керченском проливе и Таганрогском заливе - на расстоянии более 1,5 км от берега</label>
@@ -340,7 +340,7 @@
                             </div>
 
                             <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
-                                <div class="gis-subgroup-lvl1-title">47. Запретные для добычи (вылова) водных биоресурсов сроки (периоды)</div>
+                                <div class="gis-subgroup-lvl1-title">47. <span class="text-danger">Запретные</span> для добычи (вылова) водных биоресурсов <span class="text-danger">сроки</span> (периоды)</div>
                                 <!-- sub-sub menu 47.1 -->
                                 <div class="gis-subroup-lvl1-content pl-3 d-none">
                                     <div class="gis-subgroup-lvl2-title">п. 47.1. с 15 сентября по 30 ноября - форели в водных объектах рыбохозяйственного значения, расположенных в административных границах :</div>
@@ -643,6 +643,212 @@
                                     </div>
                                 </div>
                                 <!-- /sub-menu 47.25 -->
+                            </div>
+                        </div>
+
+
+                        <!-- fishing rules -->
+                        <div class="gis-group-layer ml-2 pl-3" id="show-fishing-warning">
+                            <div class="gis-element-title">Правила промышленного рыболовства</div>
+                            <small class="text-muted d-none d-sm-block">Графическая интерпретация правил промышленного рыболовства</small>
+
+                            <div class="gis-element-items pl-2 d-none">
+                                <div class="custom-control custom-checkbox text-muted">
+                                    <input type="checkbox" class="custom-control-input" />
+                                    <label class="custom-control-label">14. Районы, запретные для добычи (вылова) водных биоресурсов</label>
+                                </div>
+                            </div>
+
+
+                            <!-- submenu 46 -->
+                            <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
+                                <div class="gis-subgroup-lvl1-title">15. Запретные для добычи (вылова) водных биоресурсов сроки (периоды).</div>
+
+                                <!-- sub-sub menu 46.1 -->
+                                <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                    <div class="gis-subgroup-lvl2-title">15.2. <span class="text-danger">Запрещается</span> осуществление промышленного рыболовства и прибрежного рыболовства всех видов водных биоресурсов, <span class="text-success">за исключением:</span></div>
+                                    <div class="gis-subgroup-lvl2-content d-none">
+                                        <strong class="text-info">Частиковые виды рыб</strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="chastikovye_1" data-toggle="multipoly" data-target="fishing_rules:chastikovye_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="chastikovye_1">с 1 сентября по 15 марта - закидными неводами (волокушами), ставными неводами, каравками</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="chastikovye_2" data-toggle="multipoly" data-target="fishing_rules:chastikovye_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="chastikovye_2">с 1 марта по 15 мая - ставными неводами, каравками</label>
+                                        </div>
+                                        <hr />
+                                        <strong class="text-info">Бычки</strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="bychki_1" data-toggle="multipoly" data-target="fishing_rules:bychki_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="bychki_1">с 15 августа по 15 декабря, а также в заморный период, драгами с механизированным способом использования с размером (шагом) ячеи в кутце не менее 18 мм в количестве не более 45 единиц и с 15 марта по 15 апреля драгами с механизированным способом использования с размером (шагом) ячеи в кутце не менее 20 мм в количестве не более 3 единиц</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="bychki_2" data-toggle="multipoly" data-target="fishing_rules:bychki_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="bychki_2">только в заморный период добыча (вылов) бычков в указанном районе осуществляется, включая пятикилометровую прибрежную зону</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="bychki_3" data-toggle="multipoly" data-target="fishing_rules:bychki_3" data-color="#2bad50">
+                                            <label class="custom-control-label" for="bychki_3">с 15 августа по 15 декабря, а также в заморный период подъемными ловушками и каравками</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="bychki_4" data-toggle="multipoly" data-target="fishing_rules:bychki_4" data-color="#2bad50">
+                                            <label class="custom-control-label" for="bychki_4">с 15 августа по 15 декабря, а также в заморный период драгами с ручным способом использования, при котором замет драги производится с любого плавсредства либо с берега, а выборка - вручную (далее - ручной способ использования) или полумеханизированным способом использования, при котором замет драги производится с самоходного судна, выборка - с помощью ручных промысловых устройств или вручную (далее - полумеханизированный способ), закидными неводами (волокушами)</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="bychki_5" data-toggle="multipoly" data-target="fishing_rules:bychki_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="bychki_5">с 1 марта по 30 апреля подъемными ловушками, каравками, закидными неводами (волокушами)</label>
+                                        </div>
+                                        <hr />
+                                        <strong class="text-info">Хамса</strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="hamsa_1" data-toggle="multipoly" data-target="fishing_rules:hamsa_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="hamsa_1">с 1 сентября по 20 декабря - кошельковыми неводами (количество не ограничивается), конусными сетями с применением электросвета (количество не ограничивается) и тралами размером по верхней подборе не более 38 метров с размером (шагом) ячеи в кутце 6,5 мм (в количестве не более 11 единиц)</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="hamsa_2" data-toggle="multipoly" data-target="fishing_rules:hamsa_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="hamsa_2">с 20 сентября по 20 декабря - ставными неводами с шагом ячеи не менее 6 мм</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="hamsa_3" data-toggle="multipoly" data-target="fishing_rules:hamsa_3" data-color="#2bad50">
+                                            <label class="custom-control-label" for="hamsa_3">с 20 сентября по 20 декабря - ставными неводами с шагом ячеи не менее 6 мм</label>
+                                        </div>
+                                        <hr />
+                                        <strong class="text-info">Тюлька</strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="tyulka_1" data-toggle="multipoly" data-target="fishing_rules:tyulka_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="tyulka_1">с 15 ноября по 10 апреля - кошельковыми неводами (количество не ограничивается) и тралами размером по верхней подборе не более 38 метров с шагом ячеи в кутце 6,5 мм (в количестве не более 11 единиц)</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="tyulka_2" data-toggle="multipoly" data-target="fishing_rules:tyulka_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="tyulka_2">15 февраля по 31 мая - ставными неводами</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="tyulka_3" data-toggle="multipoly" data-target="fishing_rules:tyulka_3" data-color="#2bad50">
+                                            <label class="custom-control-label" for="tyulka_3">с 1 февраля по 15 июня - ставными неводами (общее количество не более 150 единиц)</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="tyulka_4" data-toggle="multipoly" data-target="fishing_rules:tyulka_4" data-color="#2bad50">
+                                            <label class="custom-control-label" for="tyulka_4">с 16 июня по 30 сентября - ставными неводами</label>
+                                        </div>
+
+                                        <hr />
+
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="tyulka_aterina_pekarina_bychki" data-toggle="multipoly" data-target="fishing_rules:tyulka_aterina_pekarina_bychki" data-color="#2bad50">
+                                            <label class="custom-control-label" for="tyulka_aterina_pekarina_bychki">Тюлька, атерина, перкарина и бычки - с 1 марта по 15 апреля ставными неводами</label>
+                                        </div>
+                                        <hr />
+                                        <strong class="text-info">
+                                            Азово-черноморские кефали (сингиль, лобан, остронос)
+                                        </strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="kefali_1" data-toggle="multipoly" data-target="fishing_rules:kefali_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="kefali_1">с 1 июня по 31 декабря - волокушами, закидными кефалевыми неводами (аламанами), ставными и обкидными одностенными сетями, ставными неводами, подъемными заводами, кольцевыми неводами, "на рогожку", в том числе в ночное время суток</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="kefali_2" data-toggle="multipoly" data-target="fishing_rules:kefali_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="kefali_2">с 15 июля по 31 декабря - закидными неводами</label>
+                                        </div>
+                                        <hr />
+                                        <strong class="text-info">Пиленгас</strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="pilengas_1" data-toggle="multipoly" data-target="fishing_rules:pilengas_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="pilengas_1">с 1 сентября по 15 марта закидными неводами, волокушами, ставными неводами, каравками, подъемными кефалевыми заводами</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="pilengas_2" data-toggle="multipoly" data-target="fishing_rules:pilengas_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="pilengas_2">с 1 марта по 15 мая - ставными неводами, каравками</label>
+                                        </div>
+
+                                        <hr />
+                                        <strong class="text-info">Сельдь</strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="seld_1" data-toggle="multipoly" data-target="fishing_rules:seld_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="seld_1">с 1 октября по 31 мая - ставными неводами и ставными одностенными сетями. Длина одной сети не должна превышать 75 м, длина одной ставки сетей (сетепорядка) не должна превышать 750 м</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="seld_2" data-toggle="multipoly" data-target="fishing_rules:seld_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="seld_2">с 1 октября по 31 марта - закидными неводами</label>
+                                        </div>
+
+                                        <hr />
+                                        <strong class="text-info">Барабуля и ставрида</strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="barabulya_stavrida_1" data-toggle="multipoly" data-target="fishing_rules:barabulya_stavrida_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="barabulya_stavrida_1">с 1 мая по 31 июля и с 1 сентября по 31 октября - ставными неводами и конусными сетями</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="barabulya_stavrida_2" data-toggle="multipoly" data-target="fishing_rules:barabulya_stavrida_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="barabulya_stavrida_2">с 1 мая по 31 июля и с 1 сентября по 31 октября - ставными неводами с размером (шагом) ячеи 10 мм в общем количестве не более 3 единиц</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="katran_skaty" data-toggle="multipoly" data-target="fishing_rules:katran_skaty" data-color="#2bad50">
+                                            <label class="custom-control-label" for="katran_skaty">Акула-катран, скаты - с 20 сентября по 30 ноября - ставными одностенными сетями</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="sargan" data-toggle="multipoly" data-target="fishing_rules:sargan" data-color="#2bad50">
+                                            <label class="custom-control-label" for="sargan">Сарган - с 1 мая по 31 июля и с 1 сентября по 31 октября обкидными одностенными сетями и ставными неводами</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="zostera" data-toggle="multipoly" data-target="fishing_rules:zostera" data-color="#2bad50">
+                                            <label class="custom-control-label" for="zostera">Зостера и другие морские растения - в течение года методом скашивания при помощи серпов и косилок</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="hironomidy" data-toggle="multipoly" data-target="fishing_rules:hironomidy" data-color="#2bad50">
+                                            <label class="custom-control-label" for="hironomidy">Хирономиды - в течение года - мотыльницами диаметром до 3 м, ручными сачками диаметром до 0,6 м и рамками-ситами размером до 1 кв. м из мельничного газа с использованием насосов или помп для взмучивания ила. При добыче (вылове) хирономид допускается использование насосов производительностью не более 45 куб. м в час</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="skafarka" data-toggle="multipoly" data-target="fishing_rules:skafarka" data-color="#2bad50">
+                                            <label class="custom-control-label" for="skafarka">Скафарка - в течение года - сачками, сбором руками и водолазным способом</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="meduzy" data-toggle="multipoly" data-target="fishing_rules:meduzy" data-color="#2bad50">
+                                            <label class="custom-control-label" for="meduzy">Медузы - с 15 июня по 30 сентября - закидными неводами, волокушами и ручными сачками. Прилов других видов водных биоресурсов при добыче (вылове) медуз не допускается</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="krevetki" data-toggle="multipoly" data-target="fishing_rules:krevetki" data-color="#2bad50">
+                                            <label class="custom-control-label" for="krevetki">Креветки черноморские каменная и травяная - с 1 сентября по 31 мая ручными сачками, волокушами</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="pontogammarus" data-toggle="multipoly" data-target="fishing_rules:pontogammarus" data-color="#2bad50">
+                                            <label class="custom-control-label" for="pontogammarus">Понтогаммарус - с 1 апреля по 30 ноября ручными сачками в прибрежье (кроме залива Сиваш) до глубин 2 м</label>
+                                        </div>
+
+                                        <hr />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="rapany" data-toggle="multipoly" data-target="fishing_rules:rapany" data-color="#2bad50">
+                                            <label class="custom-control-label" for="rapany">Рапаны - в течение года драгами, подъемными ловушками, сбором руками, водолазным способом</label>
+                                        </div>
+
+                                        <hr />
+                                        <strong class="text-info">Мидии</strong>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="midii_1" data-toggle="multipoly" data-target="fishing_rules:midii_1" data-color="#2bad50">
+                                            <label class="custom-control-label" for="midii_1">с 1 октября по 31 марта и с 1 июня по 31 августа - скребками, сачками, щипцами, сбор руками</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="midii_2" data-toggle="multipoly" data-target="fishing_rules:midii_2" data-color="#2bad50">
+                                            <label class="custom-control-label" for="midii_2">с 16 октября по 31 марта и с 1 июня по 31 августа - скребками, сачками, щипцами, сбор руками</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 $(function(){
-    var alertShown = false;
+    var alertAmShown = false;
+    var alertFShown = false;
 
     // visual display hidden elements
     $('.gis-group-layer').on('click', function(e) {
@@ -33,15 +34,24 @@ $(function(){
         }
 
         tElem.toggleClass('d-none');
-    })
+    });
 
     // show warning
-    $('#show-warning').on('click', function(){
-        if (!alertShown) {
+    $('#show-amauter-warning').on('click', function(){
+        if (!alertAmShown) {
             confirm("Внимание! Данные карты (с сопутствующей атрибутивной информацией) являются схематическим отображением Правил рыболовства и не обладают юридической силой. " +
             "Полный текст Правил рыболовства для Азово-Черноморского рыбохозяйственного бассейна доступен по ссылке: " +
             "http://ivo.garant.ru/#/document/70494670");
-            alertShown = true;
+            alertAmShown = true;
+        }
+    });
+
+    $('#show-fishing-warning').on('click', function(){
+        if (!alertFShown) {
+            confirm("Внимание! Данные карты (с сопутствующей атрибутивной информацией) являются схематическим отображением Правил рыболовства и не обладают юридической силой. " +
+                "Полный текст Правил рыболовства для Азово-Черноморского рыбохозяйственного бассейна доступен по ссылке: " +
+                "http://ivo.garant.ru/#/document/70494670");
+            alertFShown = true;
         }
     });
 
@@ -116,7 +126,7 @@ $(function(){
                 reuseTiles: true,
                 updateWhenIdle: false
               }
-            ).addTo(map)
+            ).addTo(map);
             map.options.crs = L.CRS.EPSG3395;
         }
         if (mid === 'gis-tile-yandex-scheme') {
@@ -127,7 +137,7 @@ $(function(){
                 reuseTiles: true,
                 updateWhenIdle: false
               }
-            ).addTo(map)
+            ).addTo(map);
             map.options.crs = L.CRS.EPSG3395;
         }
         
