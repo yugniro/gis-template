@@ -53,7 +53,7 @@ function displayLayerType(type, name, map, color) {
 function addGeojsonGeometryObject(name, map, color) {
     var namespace = name.split(':')[0];
     $.ajax({
-        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
+        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=json',
         dataType: 'jsonp',
         jsonpCallback: 'parseResponse',
         success: function(data) {
@@ -118,7 +118,7 @@ function addGeojsonPoints(name, map) {
     var namespace = name.split(':')[0];
     // load layer over jsonp
     $.ajax({
-        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
+        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=json',
         dataType: 'jsonp',
         jsonpCallback: 'parseResponse',
         success: function(data) {
