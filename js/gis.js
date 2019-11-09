@@ -1,5 +1,6 @@
+// remember to enable JSONP in /tomcat/webapps/geoserver/WEB-INF/web.xml, uncomment ENABLE_JSONP section
+
 var lay = {};
-//var owsurl = 'https://map.azniirkh.ru/geoserver/azniirkh_zones/ows';
 var owsurl = 'https://map.azniirkh.ru/geoserver/';
 
 function displayLayerType(type, name, map, color) {
@@ -53,7 +54,7 @@ function displayLayerType(type, name, map, color) {
 function addGeojsonGeometryObject(name, map, color) {
     var namespace = name.split(':')[0];
     $.ajax({
-        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=json',
+        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
         dataType: 'jsonp',
         jsonpCallback: 'parseResponse',
         success: function(data) {
@@ -118,7 +119,7 @@ function addGeojsonPoints(name, map) {
     var namespace = name.split(':')[0];
     // load layer over jsonp
     $.ajax({
-        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=json',
+        url: owsurl + namespace + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=' + name + '&maxFeatures=10000&outputFormat=text/javascript',
         dataType: 'jsonp',
         jsonpCallback: 'parseResponse',
         success: function(data) {
