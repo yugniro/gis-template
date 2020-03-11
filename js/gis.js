@@ -61,12 +61,18 @@ function addGeojsonGeometryObject(name, map, color) {
             var layer = L.geoJSON(data, {
                 onEachFeature: function(feature, layer) {
                     console.log('feature parsing begin');
+                    
                     if (feature.geometry && feature.geometry.coordinates && feature.geometry.coordinates[0][0].length >= 4) {
-                        var poly = turf.polygon(feature.geometry.coordinates[0]);
-                        var parea = turf.area(poly);
-                        parea /= 1000000; // km ^ 2
-                        if (typeof feature.properties.area == 'undefined') {
-                            feature.properties.area = parea.toFixed(2);
+                        console.log(feature.properties["area_sq_km"]);
+                        if (feature.properties && feature.properties["area_sq_km"] && (typeof feature.properties["area_sq_km"] != "undefined")) {
+                            feature.properties.area = feature.properties["area_sq_km"];
+                        } else {
+                            var poly = turf.polygon(feature.geometry.coordinates[0]);
+                            var parea = turf.area(poly);
+                            parea /= 1000000; // km ^ 2
+                            if (typeof feature.properties.area == 'undefined') {
+                                feature.properties.area = parea.toFixed(2);
+                            }
                         }
                     }
                     
