@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Azniirkh.ru map</title>
@@ -9,25 +10,30 @@
 
     <!-- base grid CSS -->
     <style>
-        html,body {
+        html,
+        body {
             width: 100%;
             height: 100%;
         }
+        
         section.map {
             display: flex;
             height: 100%;
             width: 100%;
             flex-wrap: wrap;
         }
+        
         #azniirkh-map {
             height: 100%;
             flex: 1 50%;
         }
-       #azniirkh-legend {
+        
+        #azniirkh-legend {
             height: 100%;
             flex: 1.25;
             overflow: auto;
         }
+        
         @media (max-width: 767px) {
             #azniirkh-map {
                 flex: 1 100%;
@@ -44,26 +50,27 @@
     <link href="css/map.css" rel="stylesheet">
     <link href="vendor/leaflet/leaflet.css" rel="stylesheet">
 </head>
+
 <body>
 
-<section class="map">
-    <div id="azniirkh-map"></div>
-    <div id="azniirkh-legend">
-        <div class="card">
-            <div class="card-header mb-0">Управление</div>
-            <div class="card-body p-0">
-                <ul class="nav nav-tabs nav-fill mb-2" id="menuTab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#data" role="tab" id="data-tab" data-toggle="tab" aria-controls="data" aria-selected="true">Слои</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#settings" role="tab" id="settings-tab" data-toggle="tab" aria-controls="settings" aria-selected="false">Настройки</a>
-                  </li>
-                </ul>
-                <div class="tab-content" id="menuTabContent">
-                  <div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-                    <div class="gis-layer-list">
-						<!--<div class="gis-layer ml-2 pl-3">
+    <section class="map">
+        <div id="azniirkh-map"></div>
+        <div id="azniirkh-legend">
+            <div class="card">
+                <div class="card-header mb-0">Управление</div>
+                <div class="card-body p-0">
+                    <ul class="nav nav-tabs nav-fill mb-2" id="menuTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#data" role="tab" id="data-tab" data-toggle="tab" aria-controls="data" aria-selected="true">Слои</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#settings" role="tab" id="settings-tab" data-toggle="tab" aria-controls="settings" aria-selected="false">Настройки</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="menuTabContent">
+                        <div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
+                            <div class="gis-layer-list">
+                                <!--<div class="gis-layer ml-2 pl-3">
                             <div class="gis-element">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="gis-waters" data-toggle="multilayer" data-target="azniirkh_zones:water-bodies-all,multipoly;azniirkh_zones:waterways-all,lines">
@@ -71,35 +78,35 @@
                                 </div>
                             </div>
                         </div>-->
-						<div class="gis-group-layer ml-2 pl-3">
-                            <div class="gis-element-title">Водные объекты</div>
-                            <small class="text-muted d-none d-sm-block">Водные объекты в зоне ответственности АзНИИРХ</small>
-                            <div class="gis-element-items pl-2 d-none">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="waters-rivers" data-toggle="lines" data-target="azniirkh_zones:rivers" data-color="#00cee4">
-                                    <label class="custom-control-label" for="waters-rivers">Реки</label>
-                                </div>
+                                <div class="gis-group-layer ml-2 pl-3">
+                                    <div class="gis-element-title">Водные объекты</div>
+                                    <small class="text-muted d-none d-sm-block">Водные объекты в зоне ответственности АзНИИРХ</small>
+                                    <div class="gis-element-items pl-2 d-none">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="waters-rivers" data-toggle="lines" data-target="azniirkh_zones:rivers" data-color="#00cee4">
+                                            <label class="custom-control-label" for="waters-rivers">Реки</label>
+                                        </div>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="waters-lakes" data-toggle="lines" data-target="azniirkh_zones:lakes_reservoirs" data-color="#00cee4">
-                                    <label class="custom-control-label" for="waters-lakes">Озера и водохранилища</label>
-                                </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="waters-lakes" data-toggle="lines" data-target="azniirkh_zones:lakes_reservoirs" data-color="#00cee4">
+                                            <label class="custom-control-label" for="waters-lakes">Озера и водохранилища</label>
+                                        </div>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="gis-rostov-waters" data-toggle="multilayer" data-target="azniirkh_zones:water-bodies-rostov,multipoly;azniirkh_zones:waterways-rostov,lines" data-color="#00cee4">
-                                    <label class="custom-control-label" for="gis-rostov-waters" style="color:lightgrey">Ростовская обл <sup style="color:brown">устаревш.</sup></label>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="gis-rostov-waters" data-toggle="multilayer" data-target="azniirkh_zones:water-bodies-rostov,multipoly;azniirkh_zones:waterways-rostov,lines" data-color="#00cee4">
+                                            <label class="custom-control-label" for="gis-rostov-waters" style="color:lightgrey">Ростовская обл <sup style="color:brown">устаревш.</sup></label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="gis-layer ml-2 pl-3">
-                            <div class="gis-element">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="gis-azniirkh-zone" data-toggle="multipoly" data-target="azniirkh_zones:azniirkh_zone" data-color="#e24418">
-                                    <label class="custom-control-label" for="gis-azniirkh-zone">Зона ответственности АзНИИРХ</label>
+                                <div class="gis-layer ml-2 pl-3">
+                                    <div class="gis-element">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="gis-azniirkh-zone" data-toggle="multipoly" data-target="azniirkh_zones:azniirkh_zone" data-color="#e24418">
+                                            <label class="custom-control-label" for="gis-azniirkh-zone">Зона ответственности АзНИИРХ</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!--<div class="gis-layer ml-2 pl-3">
+                                <!--<div class="gis-layer ml-2 pl-3">
                             <div class="gis-element">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="rpu-all-zones" data-toggle="multipoly" data-target="azniirkh_zones:rpu" data-color="#e0b90d">
@@ -107,840 +114,840 @@
                                 </div>
                             </div>
                         </div>-->
-                        <div class="gis-group-layer ml-2 pl-3">
-                            <div class="gis-element-title">Рыбоводные участки</div>
-                            <small class="text-muted d-none d-sm-block">Границы рыбоводных участков субъектов предпринимательства</small>
-                            <div class="gis-element-items pl-2 d-none">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rvu-rostov-areas" data-toggle="multipoly" data-target="azniirkh_zones:rvu_rostovskaya_oblast" data-color="#2a68d3">
-                                    <label class="custom-control-label" for="rvu-rostov-areas">Ростовская обл</label>
+                                <div class="gis-group-layer ml-2 pl-3">
+                                    <div class="gis-element-title">Рыбоводные участки</div>
+                                    <small class="text-muted d-none d-sm-block">Границы рыбоводных участков субъектов предпринимательства</small>
+                                    <div class="gis-element-items pl-2 d-none">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="rvu-rostov-areas" data-toggle="multipoly" data-target="azniirkh_zones:rvu_rostovskaya_oblast" data-color="#2a68d3">
+                                            <label class="custom-control-label" for="rvu-rostov-areas">Ростовская обл</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="rvu-krasnodar-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_krasnodarsky_kray" data-color="#2a68d3">
+                                            <label class="custom-control-label" for="rvu-krasnodar-areas">Краснодарский край</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="rvu-stavropol-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_stavropolsky_kray" data-color="#2a68d3">
+                                            <label class="custom-control-label" for="rvu-stavropol-areas">Ставропольский край</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="rvu_krym-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_krym" data-color="#2a68d3">
+                                            <label class="custom-control-label" for="rvu_krym-areas">Республика Крым</label>
+                                        </div>
+                                        <hr style="margin: 0;" />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="show-all-rvu" data-toggle="checkall" data-target="rvu-rostov-areas,rvu-krasnodar-areas,rvu-stavropol-areas,rvu_krym-areas">
+                                            <label class="custom-control-label" for="show-all-rvu">показать все слои</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rvu-krasnodar-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_krasnodarsky_kray" data-color="#2a68d3">
-                                    <label class="custom-control-label" for="rvu-krasnodar-areas">Краснодарский край</label>
+                                <div class="gis-group-layer ml-2 pl-3">
+                                    <div class="gis-element-title">Рыболовные участки</div>
+                                    <small class="text-muted d-none d-sm-block">Рыболовные участки для осуществления промышленного рыболовства</small>
+                                    <div class="gis-element-items pl-2 d-none">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="rlu_rostovskaya_oblast" data-toggle="multipoly" data-target="azniirkh_zones:rlu_rostovskaya_oblast" data-color="#2a68d3">
+                                            <label class="custom-control-label" for="rlu_rostovskaya_oblast">Ростовская обл</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rvu-stavropol-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_stavropolsky_kray" data-color="#2a68d3">
-                                    <label class="custom-control-label" for="rvu-stavropol-areas">Ставропольский край</label>
+                                <div class="gis-group-layer ml-2 pl-3">
+                                    <div class="gis-element-title">Орудия лова</div>
+                                    <small class="text-muted d-none d-sm-block">Расположение орудий стационарного прибрежного рыболовства</small>
+                                    <div class="gis-element-items pl-2 d-none">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fg-kambalnyeiseti" data-toggle="points" data-target="fishing-gears:kambalnye_seti" data-color="#bf42f4">
+                                            <label class="custom-control-label" for="fg-kambalnyeiseti">Камбальные сети</label>
+                                        </div>
+                                        <hr style="margin: 0;" />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="show-all-fg" data-toggle="checkall" data-target="fg-kambalnyeiseti">
+                                            <label class="custom-control-label" for="show-all-fg">показать все слои</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rvu_krym-areas" data-toggle="multiline" data-target="azniirkh_zones:rvu_krym" data-color="#2a68d3">
-                                    <label class="custom-control-label" for="rvu_krym-areas">Республика Крым</label>
+                                <div class="gis-group-layer ml-2 pl-3">
+                                    <div class="gis-element-title">Морские режимные районы</div>
+                                    <small class="text-muted d-none d-sm-block">Режимные районы Азовского и Черного моря с запретами и ограничениями судоходства</small>
+                                    <div class="gis-element-items pl-2 d-none">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="restrict-zapret-dlya-plavaniya" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zapretnye_dlya_plavaniya" data-color="#ff6f01">
+                                            <label class="custom-control-label" for="restrict-zapret-dlya-plavaniya">Районы, запретные для плавания</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="restrict-zapret-dlya-ostanovki" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zapretnye_dlya_ostanovki" data-color="#ff6f01">
+                                            <label class="custom-control-label" for="restrict-zapret-dlya-ostanovki">Районы, запретные для остановки, постановки на якорь, лова рыбы придонными орудиями лова, подводных и дноуглубительных работ, взрывных работ и плавания с вытравленной якорь-цепью</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="restrict-zapret-vremenii-plavanie" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_vremenno_opasnye" data-color="#ff6f01">
+                                            <label class="custom-control-label" for="restrict-zapret-vremenii-plavanie">Районы, временно опасные для плавания</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="restrict-nomernie-raiony" data-toggle="multipoly" data-target="azniirkh_zones:Nomernye_raiony" data-color="#ff6f01">
+                                            <label class="custom-control-label" for="restrict-nomernie-raiony">Номерные районы (для учений флота)</label>
+                                        </div>
+                                        <hr style="margin: 0;" />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="show-all-restrict" data-toggle="checkall" data-target="restrict-zapret-dlya-plavaniya,restrict-zapret-dlya-ostanovki,restrict-zapret-vremenii-plavanie,restrict-nomernie-raiony">
+                                            <label class="custom-control-label" for="show-all-restrict">показать все слои</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <hr style="margin: 0;" />
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="show-all-rvu" data-toggle="checkall" data-target="rvu-rostov-areas,rvu-krasnodar-areas,rvu-stavropol-areas,rvu_krym-areas">
-                                    <label class="custom-control-label" for="show-all-rvu">показать все слои</label>
+                                <div class="gis-group-layer ml-2 pl-3">
+                                    <div class="gis-element-title">Районы, опасные в навигационном отношении</div>
+                                    <small class="text-muted d-none d-sm-block">Районы Азовского и Черного моря опасные в навигационном отношении для судоходства</small>
+                                    <div class="gis-element-items pl-2 d-none">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="dangerous-sledyet-izbegat" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_kotoryh_sleduet_izbegat" data-color="#ba0808">
+                                            <label class="custom-control-label" for="dangerous-sledyet-izbegat">Районы, которые судам следует избегать</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="dangerous-vzryv-veschestv" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zatopl_vzryv_veschestv" data-color="#ba0808">
+                                            <label class="custom-control-label" for="dangerous-vzryv-veschestv">Районы затопленных взрывчатых веществ</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="dangerous-svalka-grunta-deistv" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_svalki_grunta_deistv" data-color="#ba0808">
+                                            <label class="custom-control-label" for="dangerous-svalka-grunta-deistv">Районы свалки грунта (действующие)</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="dangerous-svalka-grunta-old" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_svalki_grunta_byvshie" data-color="#ba0808">
+                                            <label class="custom-control-label" for="dangerous-svalka-grunta-old">Районы свалки грунта (бывшие)</label>
+                                        </div>
+                                        <hr style="margin: 0;" />
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="show-all-dangerous" data-toggle="checkall" data-target="dangerous-sledyet-izbegat,dangerous-vzryv-veschestv,dangerous-svalka-grunta-deistv,dangerous-svalka-grunta-old">
+                                            <label class="custom-control-label" for="show-all-dangerous">показать все слои</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="gis-group-layer ml-2 pl-3">
-                            <div class="gis-element-title">Рыболовные участки</div>
-                            <small class="text-muted d-none d-sm-block">Рыболовные участки для осуществления промышленного рыболовства</small>
-                            <div class="gis-element-items pl-2 d-none">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="rlu_rostovskaya_oblast" data-toggle="multipoly" data-target="azniirkh_zones:rlu_rostovskaya_oblast" data-color="#2a68d3">
-                                    <label class="custom-control-label" for="rlu_rostovskaya_oblast">Ростовская обл</label>
+                                <div class="gis-layer ml-2 pl-3">
+                                    <div class="gis-element">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="restrict-oldest-now-safity" data-toggle="multipoly" data-target="azniirkh_zones:Byvshie_opasnie_ot_min_raiony" data-color="#365ec4">
+                                            <label class="custom-control-label" for="restrict-oldest-now-safity">Бывшие опасные от мин районы, открытые для плавания судов</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="gis-group-layer ml-2 pl-3">
-                            <div class="gis-element-title">Орудия лова</div>
-                            <small class="text-muted d-none d-sm-block">Расположение орудий стационарного прибрежного рыболовства</small>
-                            <div class="gis-element-items pl-2 d-none">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="fg-kambalnyeiseti" data-toggle="points" data-target="fishing-gears:kambalnye_seti" data-color="#bf42f4">
-                                    <label class="custom-control-label" for="fg-kambalnyeiseti">Камбальные сети</label>
+                                <div class="gis-layer ml-2 pl-3">
+                                    <div class="gis-element">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="gis-oopt" data-toggle="multipoly" data-target="azniirkh_zones:oopt" data-color="#e21776">
+                                            <label class="custom-control-label" for="gis-oopt">Особо охраняемые зоны</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <hr style="margin: 0;" />
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="show-all-fg" data-toggle="checkall" data-target="fg-kambalnyeiseti">
-                                    <label class="custom-control-label" for="show-all-fg">показать все слои</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gis-group-layer ml-2 pl-3">
-                            <div class="gis-element-title">Морские режимные районы</div>
-                            <small class="text-muted d-none d-sm-block">Режимные районы Азовского и Черного моря с запретами и ограничениями судоходства</small>
-                            <div class="gis-element-items pl-2 d-none">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="restrict-zapret-dlya-plavaniya" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zapretnye_dlya_plavaniya" data-color="#ff6f01">
-                                    <label class="custom-control-label" for="restrict-zapret-dlya-plavaniya">Районы, запретные для плавания</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="restrict-zapret-dlya-ostanovki" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zapretnye_dlya_ostanovki" data-color="#ff6f01">
-                                    <label class="custom-control-label" for="restrict-zapret-dlya-ostanovki">Районы, запретные для остановки, постановки на якорь, лова рыбы придонными орудиями лова, подводных и дноуглубительных работ, взрывных работ и плавания с вытравленной якорь-цепью</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="restrict-zapret-vremenii-plavanie" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_vremenno_opasnye" data-color="#ff6f01">
-                                    <label class="custom-control-label" for="restrict-zapret-vremenii-plavanie">Районы, временно опасные для плавания</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="restrict-nomernie-raiony" data-toggle="multipoly" data-target="azniirkh_zones:Nomernye_raiony" data-color="#ff6f01">
-                                    <label class="custom-control-label" for="restrict-nomernie-raiony">Номерные районы (для учений флота)</label>
-                                </div>
-                                <hr style="margin: 0;" />
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="show-all-restrict" data-toggle="checkall" data-target="restrict-zapret-dlya-plavaniya,restrict-zapret-dlya-ostanovki,restrict-zapret-vremenii-plavanie,restrict-nomernie-raiony">
-                                    <label class="custom-control-label" for="show-all-restrict">показать все слои</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gis-group-layer ml-2 pl-3">
-                            <div class="gis-element-title">Районы, опасные в навигационном отношении</div>
-                            <small class="text-muted d-none d-sm-block">Районы Азовского и Черного моря опасные в навигационном отношении для судоходства</small>
-                            <div class="gis-element-items pl-2 d-none">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="dangerous-sledyet-izbegat" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_kotoryh_sleduet_izbegat" data-color="#ba0808">
-                                    <label class="custom-control-label" for="dangerous-sledyet-izbegat">Районы, которые судам следует избегать</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="dangerous-vzryv-veschestv" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_zatopl_vzryv_veschestv" data-color="#ba0808">
-                                    <label class="custom-control-label" for="dangerous-vzryv-veschestv">Районы затопленных взрывчатых веществ</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="dangerous-svalka-grunta-deistv" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_svalki_grunta_deistv" data-color="#ba0808">
-                                    <label class="custom-control-label" for="dangerous-svalka-grunta-deistv">Районы свалки грунта (действующие)</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="dangerous-svalka-grunta-old" data-toggle="multipoly" data-target="azniirkh_zones:Raiony_svalki_grunta_byvshie" data-color="#ba0808">
-                                    <label class="custom-control-label" for="dangerous-svalka-grunta-old">Районы свалки грунта (бывшие)</label>
-                                </div>
-                                <hr style="margin: 0;" />
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="show-all-dangerous" data-toggle="checkall" data-target="dangerous-sledyet-izbegat,dangerous-vzryv-veschestv,dangerous-svalka-grunta-deistv,dangerous-svalka-grunta-old">
-                                    <label class="custom-control-label" for="show-all-dangerous">показать все слои</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gis-layer ml-2 pl-3">
-                            <div class="gis-element">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="restrict-oldest-now-safity" data-toggle="multipoly" data-target="azniirkh_zones:Byvshie_opasnie_ot_min_raiony" data-color="#365ec4">
-                                    <label class="custom-control-label" for="restrict-oldest-now-safity">Бывшие опасные от мин районы, открытые для плавания судов</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gis-layer ml-2 pl-3">
-                            <div class="gis-element">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="gis-oopt" data-toggle="multipoly" data-target="azniirkh_zones:oopt" data-color="#e21776">
-                                    <label class="custom-control-label" for="gis-oopt">Особо охраняемые зоны</label>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="gis-group-layer ml-2 pl-3" id="show-amauter-warning">
-                            <div class="gis-element-title">Правила любительского рыболовства</div>
-                            <small class="text-muted d-none d-sm-block">Графическая интерпретация правил любительского рыболовства</small>
-                            
-                            <!-- submenu 46 -->
-                            <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
-                                <div class="gis-subgroup-lvl1-title">46. <span class="text-danger">Районы</span>, <span class="text-danger">запретные</span> для добычи (вылова) водных биоресурсов</div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="fr-46" data-toggle="multipoly" data-target="fishing_rules:46" data-color="#f46842" />
-                                    <label class="custom-control-label" for="fr-46">В Азовском море, Керченском проливе и Таганрогском заливе - на расстоянии более 1,5 км от берега</label>
-                                </div>
-                                
-                                <!-- sub-sub menu 46.1 -->
-                                <div class="gis-subroup-lvl1-content pl-3 d-none">
-                                    <div class="gis-subgroup-lvl2-title">п. 46.1. В водных объектах рыбохозяйственного значения Ростовской области:</div>
-                                    <div class="gis-subgroup-lvl2-content d-none">
-                                        <small class="text-muted">Запрещена добыча (вылов) всех видов биоресурсов</small>
+                                <div class="gis-group-layer ml-2 pl-3" id="show-amauter-warning">
+                                    <div class="gis-element-title">Правила любительского рыболовства</div>
+                                    <small class="text-muted d-none d-sm-block">Графическая интерпретация правил любительского рыболовства</small>
+
+                                    <!-- submenu 46 -->
+                                    <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
+                                        <div class="gis-subgroup-lvl1-title">46. <span class="text-danger">Районы</span>, <span class="text-danger">запретные</span> для добычи (вылова) водных биоресурсов</div>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-a" data-toggle="multipoly" data-target="fishing_rules:46_1_1_a" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-a">п. 46.1.1.а. в водных объектах рыбохозяйственного значения Донского запретного пространства</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-b" data-toggle="multipoly" data-target="fishing_rules:46_1_1_b" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-b">п. 46.1.1.б. в Миусском лимане</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-c" data-toggle="multipoly" data-target="fishing_rules:46_1_1_c" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-c">п. 46.1.1.в. в реке Дон</label>
+                                            <input type="checkbox" class="custom-control-input" id="fr-46" data-toggle="multipoly" data-target="fishing_rules:46" data-color="#f46842" />
+                                            <label class="custom-control-label" for="fr-46">В Азовском море, Керченском проливе и Таганрогском заливе - на расстоянии более 1,5 км от берега</label>
                                         </div>
 
+                                        <!-- sub-sub menu 46.1 -->
+                                        <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                            <div class="gis-subgroup-lvl2-title">п. 46.1. В водных объектах рыбохозяйственного значения Ростовской области:</div>
+                                            <div class="gis-subgroup-lvl2-content d-none">
+                                                <small class="text-muted">Запрещена добыча (вылов) всех видов биоресурсов</small>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-a" data-toggle="multipoly" data-target="fishing_rules:46_1_1_a" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-a">п. 46.1.1.а. в водных объектах рыбохозяйственного значения Донского запретного пространства</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-b" data-toggle="multipoly" data-target="fishing_rules:46_1_1_b" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-b">п. 46.1.1.б. в Миусском лимане</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-c" data-toggle="multipoly" data-target="fishing_rules:46_1_1_c" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-c">п. 46.1.1.в. в реке Дон</label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox text-muted">
+                                                    <input type="checkbox" class="custom-control-input" />
+                                                    <label class="custom-control-label">п. 46.1.1.г. в реках протяженностью до 10 км - с моторных судов и плавучих средств</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-d" data-toggle="multipoly" data-target="fishing_rules:46_1_1_d" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-d">п. 46.1.1.д. на расстоянии менее 500 м от Болотовского водосброса Веселовского водохранилища</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-e" data-toggle="multipoly" data-target="fishing_rules:46_1_1_e" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-e">п. 46.1.1.е. в акватории Цимлянского государственного природного заказника</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-f" data-toggle="multipoly" data-target="fishing_rules:46_1_1_f" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-f">п. 46.1.1.ж. в балке Большая Садковка в Веселовском водохранилище</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-g" data-toggle="multipoly" data-target="fishing_rules:46_1_1_g" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-g">п. 46.1.1.з. в балке Малая Садковка в Веселовском водохранилище</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-h" data-toggle="multipoly" data-target="fishing_rules:46_1_1_h" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-h">п. 46.1.1.и. в балке Куцая в Веселовском водохранилище</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-i" data-toggle="multipoly" data-target="fishing_rules:46_1_1_i" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-i">п. 46.1.1.к. в балке Бугинская</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-1-j" data-toggle="multipoly" data-target="fishing_rules:46_1_1_j" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-1-j">п. 46.1.1.л. в акватории Веселовского водохранилища</label>
+                                                </div>
+                                                <small class="text-muted">Запрещена добыча (вылов) раков пресноводных</small>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-1-2" data-toggle="multipoly" data-target="fishing_rules:46_1_2" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-1-2">п. 46.1.2. в реке Койсуг (от устья до впадения в нее реки Чмутовой)</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-sub menu 46.1 -->
+
+                                        <!-- sub-sub menu 46.2 -->
+                                        <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                            <div class="gis-subgroup-lvl2-title">п. 46.2. В водных объектах рыбохозяйственного значения Краснодарского края и Республики Адыгея:</div>
+                                            <div class="gis-subgroup-lvl2-content d-none">
+                                                <small class="text-muted">Запрещена добыча (вылов) всех видов водных биоресурсов:</small>
+                                                <div class="custom-control custom-checkbox text-muted">
+                                                    <input type="checkbox" class="custom-control-input" />
+                                                    <label class="custom-control-label">п. 46.2.а. перед устьями рек на расстоянии менее 500 м в обе стороны от устьев</label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-2-b" data-toggle="multipoly" data-target="fishing_rules:46_2_b" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-2-b">п. 46.2.б. в межлиманных соединениях и гирлах</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-sub menu 46.2 -->
+
+                                        <!-- sub-sub menu 46.3 -->
+                                        <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                            <div class="gis-subgroup-lvl2-title">п. 46.3. В водных объектах рыбохозяйственного значения Ставропольского края:</div>
+                                            <div class="gis-subgroup-lvl2-content d-none">
+                                                <small class="text-muted">Запрещена добыча (вылов) всех видов водных биоресурсов:</small>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-3-a" data-toggle="multipoly" data-target="fishing_rules:46_3_a" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-3-a">п. 46.3.а. в чаше консольного водосброса Невинномысского канала</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-3-b" data-toggle="multipoly" data-target="fishing_rules:46_3_b" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-3-b">п. 46.3.б. в реке Егорлык от ее истока до впадения в Сенгилеевское водохранилище</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-sub menu 46.3 -->
+
+                                        <!-- sub-sub menu 46.4 -->
+                                        <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                            <div class="gis-subgroup-lvl2-title">п. 46.4. В водных объектах рыбохозяйственного значения Карачаево-Черкесской Республики:</div>
+                                            <div class="gis-subgroup-lvl2-content d-none">
+                                                <div class="custom-control custom-checkbox text-muted">
+                                                    <input type="checkbox" class="custom-control-input" />
+                                                    <label class="custom-control-label">п. 46.4.а. запрещена добыча (вылов) всех видов водных биоресурсов: перед устьями рек на расстоянии менее 500 м в обе стороны от устьев</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-46-4-b" data-toggle="multipoly" data-target="fishing_rules:46_4_b" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-46-4-b">п. 46.4.б. Запрещена добыча (вылов) форели в реках</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-sub menu 46.4 -->
+                                    </div>
+
+                                    <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
+                                        <div class="gis-subgroup-lvl1-title">47. <span class="text-danger">Запретные</span> для добычи (вылова) водных биоресурсов <span class="text-danger">сроки</span> (периоды)</div>
+                                        <!-- sub-sub menu 47.1 -->
+                                        <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                            <div class="gis-subgroup-lvl2-title">п. 47.1. с 15 сентября по 30 ноября - форели в водных объектах рыбохозяйственного значения, расположенных в административных границах :</div>
+                                            <div class="gis-subgroup-lvl2-content d-none">
+                                                <small class="text-muted">Запрещена добыча (вылов) всех видов биоресурсов</small>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-1-1-a" data-toggle="lines" data-target="fishing_rules:47_1_a" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-1-1-a">п. 47.1.а. река Кубань: от Красного моста Даутского заказника вверх по течению до истока</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-1-1-b" data-toggle="lines" data-target="fishing_rules:47_1_b" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-1-1-b">п. 47.1.б. река Теберда: от аула Нижняя Теберда вверх по течению до истока</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-1-1-c" data-toggle="lines" data-target="fishing_rules:47_1_c" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-1-1-c">п. 47.1.в. река Уруп: ниже устья реки Себельдинка</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-sub menu 47.1 -->
+                                        <!-- sub-sub menu 47.2 -->
+                                        <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                            <div class="gis-subgroup-lvl2-title">п. 47.2. с 1 марта по 31 мая:</div>
+                                            <div class="gis-subgroup-lvl2-content d-none">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-2-a" data-toggle="lines" data-target="fishing_rules:47_2_a" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-2-a">п. 47.2.а. в реке Мокрая Чумбурка - от устья до северо-западной окраины хутора Юшкино</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-2-b" data-toggle="lines" data-target="fishing_rules:47_2_b" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-2-b">п. 47.2.б. в Таганрогском заливе от юго-западной окраины села Маргаритово</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-2-c" data-toggle="lines" data-target="fishing_rules:47_2_c" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-2-c">п. 47.2.в. перед гирлом Миусского лимана на расстоянии менее 2,5 км в обе стороны от гирла</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-2-d" data-toggle="lines" data-target="fishing_rules:47_2_d" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-2-d">п. 47.2.г. в Веселовском водохранилище и балке Грекова в районе острова Большой</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-2-e" data-toggle="lines" data-target="fishing_rules:47_2_e" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-2-e">п. 47.2.д. в притоках реки Северский Донец (реки Кундрючья, Быстрая, Калитва)</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-2-f" data-toggle="lines" data-target="fishing_rules:47_2_f" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-2-f">п. 47.2.е. на участке реки Северский Донец от Усть-Быстрянской пристани до Бронницкой переправы</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-sub menu 47.2 -->
+                                        <!-- sub-sub menu 47.3 -->
+                                        <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                            <div class="gis-subgroup-lvl2-title">п. 47.3. с 1 апреля по 31 мая:</div>
+                                            <div class="gis-subgroup-lvl2-content d-none">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-3-a" data-toggle="lines" data-target="fishing_rules:47_3_a" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-3-a">п. 47.3.а. в реке Аксай с впадающими в нее реками Тузлов, Грушевка и ериком Караич, рекой Черкасской с Махинским лиманом, реке Койсуг</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox text-muted">
+                                                    <input type="checkbox" class="custom-control-input" />
+                                                    <label class="custom-control-label">п. 47.3.б. утратил силу. - Приказ Минсельхоза России от 29.11.2017 N 596</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox text-muted">
+                                                    <input type="checkbox" class="custom-control-input" />
+                                                    <label class="custom-control-label">п. 47.3.в. на расстоянии менее 500 м от автодорожных (относящихся к трассам федерального значения) и железнодорожных мостов, расположенных на всех несудоходных реках Азово-Черноморского рыбохозяйственного бассейна</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-3-b" data-toggle="lines" data-target="fishing_rules:47_3_b" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-3-b">п. 47.3.г. во всех внутренних водных объектах рыбохозяйственного значения Республики Крым (за исключением хирономид (мотыля) в водных </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="fr-47-3-c" data-toggle="lines" data-target="fishing_rules:47_3_c" data-color="#f46842">
+                                                    <label class="custom-control-label" for="fr-47-3-c">п. 47.3.д. во всех водных объектах Республики Адыгея, за исключением добычи (вылова) водных биоресурсов одной поплавочной удочкой или донной удочкой с одним крючком на одного гражданина, спиннингом с берега без использования всех видов судов или плавучих средств</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-sub menu 47.3 -->
+                                        <!-- sub-menu 47.4 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-4" data-toggle="multipoly" data-target="fishing_rules:47_4" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-4">п. 47.4. с 1 мая по 1 июня в Цимлянском водохранилище: от плотины Цимлянской ГЭС до железнодорожного моста у хутора Ложки, за исключением добычи (вылова) водных биоресурсов одной поплавочной или донной удочкой с одним крючком на одного гражданина, спиннингом с берега без использования всех видов судов и плавучих средств</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.4 -->
+                                        <!-- sub-menu 47.5 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-5" data-toggle="multipoly" data-target="fishing_rules:47_5" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-5">п. 47.5. с 15 мая по 15 июля - на всей акватории Кубанского водохранилища</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.5 -->
+                                        <!-- sub-menu 47.6 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-6" data-toggle="multipoly" data-target="fishing_rules:47_6" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-6">п. 47.6. с 25 апреля по 1 июня - в реке Дон: от железнодорожного моста у хутора Ложки в Цимлянском водохранилище до устья реки Иловля, за исключением добычи (вылова) водных биоресурсов одной поплавочной или донной удочкой с одним крючком на одного гражданина, спиннингом с берега без использования всех видов судов и плавучих средств</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.6 -->
+                                        <!-- sub-menu 47.7 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-7" data-toggle="multipoly" data-target="fishing_rules:47_7" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-7">п. 47.7. с 20 апреля по 1 июня - в реке Дон со всеми его притоками, рукавами, протоками и полойными озерами на участке выше устья реки Иловля, за исключением добычи (вылова) водных биоресурсов одной поплавочной или донной удочкой с одним крючком на одного гражданина, спиннингом с берега без использования всех видов судов и плавучих средств</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.7 -->
+                                        <!-- sub-menu 47.8.1 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-8-1" data-toggle="multipoly" data-target="fishing_rules:47_8_1" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-8-1">п. 47.8. с 1 марта по 31 мая - в азовских лиманах Краснодарского края</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.8.1 -->
+                                        <!-- sub-menu 47.8 muted -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox text-muted">
+                                                <input type="checkbox" class="custom-control-input" />
+                                                <label class="custom-control-label">с 25 марта по 30 апреля - на водоемах и каналах Азово-Кубанских нерестово-выростных хозяйств или их частях, предоставленных для организации любительского и спортивного рыболовства;</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.8 muted -->
+                                        <!-- sub-menu 47.8.2 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-8-2" data-toggle="multipoly" data-target="fishing_rules:47_8_2" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-8-2">п. 47.8. с 1 февраля по 1 мая - в Ейском, Бейсугском и Ахтарском лиманах</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.8.2 -->
+                                        <!-- sub-menu 47.9-->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-9" data-toggle="multipoly" data-target="fishing_rules:47_9" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-9">п. 47.9. с 1 сентября по 15 июня - с применением блесен на реке Дон: от водозабора Семикаракорского консервного завода до верхней оконечности острова Раздорского</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.9 -->
+                                        <!-- sub-menu 47.10-->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-10" data-toggle="lines" data-target="fishing_rules:47_10" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-10">п. 47.10. с распаления льда по 30 июня - на реке Маныч - от устья до запретного пространства Усть-Манычского гидроузла</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.10 -->
+                                        <!-- sub-menu 47.11 muted -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox text-muted">
+                                                <input type="checkbox" class="custom-control-input" />
+                                                <label class="custom-control-label">п. 47.11. с 15 апреля по 15 июня - рыбца</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.11 muted -->
+                                        <!-- sub-menu 47.12.1 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-12-1" data-toggle="multipoly" data-target="fishing_rules:47_12_1" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-12-1">п. 47.12. с 1 января по 14 июня - рака пресноводного в водных объектах Ростовской области (исключая Цимлянское водохранилище), Краснодарского края (за исключением азовских лиманов) и Республики Адыгея</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.12.1 -->
+                                        <!-- sub-menu 47.12.2 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-12-2" data-toggle="multipoly" data-target="fishing_rules:47_12_2" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-12-2">п. 47.12. в течение всего года - рака пресноводного в азовских лиманах Краснодарского края</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.12.2 -->
+                                        <!-- sub-menu 47.12.3 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-12-3" data-toggle="multipoly" data-target="fishing_rules:47_12_3" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-12-3">п. 47.12. с 1 декабря по 15 августа - рака пресноводного в водных объектах Ставропольского края, Республики Калмыкия и Карачаево-Черкесской Республики</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.12.3 -->
+                                        <!-- sub-menu 47.12.4 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-12-4" data-toggle="multipoly" data-target="fishing_rules:47_12_4" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-12-4">п. 47.12. с 1 января по 15 сентября - рака пресноводного в Цимлянском водохранилище</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.12.4 -->
+                                        <!-- sub-menu 47.12.5 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-12-5" data-toggle="multipoly" data-target="fishing_rules:47_12_5" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-12-5">п. 47.12. с 1 января по 15 июля - рака пресноводного в водных объектах Республики Крым</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.12.5 -->
+                                        <!-- sub-menu 47.13 muted -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox text-muted">
+                                                <input type="checkbox" class="custom-control-input" />
+                                                <label class="custom-control-label">п. 47.13. с 15 ноября по 31 марта - на зимовальных ямах, согласно Приложению N 1 к Правилам рыболовства "Перечень зимовальных ям, расположенных на водных объектах рыбохозяйственного значения Воронежской, Волгоградской, Липецкой, Саратовской, Ростовской и Тульской областей, Краснодарского края и Республики Адыгея"</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.13 muted -->
+                                        <!-- sub-menu 47.14 muted -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox text-muted">
+                                                <input type="checkbox" class="custom-control-input" />
+                                                <label class="custom-control-label">п. 47.14. с 15 ноября по 31 марта - повсеместно на внутренних водных объектах осуществлять подводную охоту</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.14 muted -->
+                                        <!-- sub-menu 47.15 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-15" data-toggle="multipoly" data-target="fishing_rules:47_15" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-15">п. 47.15. в течение всего года усачей и кумжи (форели) в водных объектах рыбохозяйственного значения Республики Крым</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.15 -->
+                                        <!-- sub-menu 47.16 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-16" data-toggle="multipoly" data-target="fishing_rules:47_16" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-16">п. 47.16. с 1 января по 31 мая - камбалы-глоссы в Азовском море, Керченском проливе и заливе Сиваш</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.16 -->
+                                        <!-- sub-menu 47.17 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-17" data-toggle="multipoly" data-target="fishing_rules:47_17" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-17">п. 47.17. с 1 июля по 31 июля - креветок черноморских каменной и травяной в Азовском море, Керченском проливе и заливе Сиваш</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.17 -->
+                                        <!-- sub-menu 47.18 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-18" data-toggle="multipoly" data-target="fishing_rules:47_18" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-18">п. 47.18. с 15 марта по 30 апреля - рыб в заливе Стройманыч озера Маныч-Гудило и в реке Калаус от устья на расстоянии 3 км выше по течению</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.18 -->
+                                        <!-- sub-menu 47.19 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-19" data-toggle="multilayer" data-target="fishing_rules:47_19_lines,lines;fishing_rules:47_19_polygons,multipoly" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-19">п. 47.19. в течение всего года - судака и берша в реке Дон от плотины Цимлянского гидроузла до устья, включая бассейны всех впадающих в этот участок Дона рек (исключая Веселовское и Пролетарское водохранилища на реке Маныч), в реке Кубань от плотины Краснодарского гидроузла до устья, реке Протока, в азовских лиманах Краснодарского края, включая лиманы Ейский, Бейсугский, Ахтарский, Курчанский и Большой Ахтанизовский, в Азовском море и в Таганрогском заливе</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.19 -->
+                                        <!-- sub-menu 47.20 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-20" data-toggle="multipoly" data-target="fishing_rules:47_20" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-20">п. 47.20. с 1 декабря по 30 апреля - судака и берша в Веселовском и Пролетарском водохранилищах</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.20 -->
+                                        <!-- sub-menu 47.21 muted -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox text-muted">
+                                                <input type="checkbox" class="custom-control-input" />
+                                                <label class="custom-control-label">п. 47.21. с 15 января по 28 (29) февраля - щуки повсеместно</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.21 muted -->
+                                        <!-- sub-menu 47.22 muted -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox text-muted">
+                                                <input type="checkbox" class="custom-control-input" />
+                                                <label class="custom-control-label">п. 47.22. с 15 марта по 30 апреля - судака повсеместно</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.22 muted -->
+                                        <!-- sub-menu 47.23 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-23" data-toggle="multipoly" data-target="fishing_rules:47_23" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-23">п. 47.23. с 1 мая по 30 июня - всех видов рыб в реке Егорлык от чаши консольного водосброса из Буферного водохранилища до впадения в Новотроицкое водохранилище</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.23 -->
+                                        <!-- sub-menu 47.24 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-24" data-toggle="multipoly" data-target="fishing_rules:47_24" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-24">п. 47.24. с 1 мая по 30 июня - всех видов рыб в Кумо-Манычском канале от пикета N 962 до впадения в Чограйское водохранилище</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.24 -->
+                                        <!-- sub-menu 47.25 -->
+                                        <div class="gis-subroup-lvl1-content pl-1 d-none">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="fr-47-25" data-toggle="multilayer" data-target="fishing_rules:47_25_lines,lines;fishing_rules:47_25_polygons,multipoly" data-color="#f46842" />
+                                                <label class="custom-control-label" for="fr-47-25">п. 47.25. с 15 марта по 30 апреля - тарани и плотвы в Азовском море, Таганрогском заливе, реке Дон ниже плотины Цимлянской ГЭС с притоками (за исключением реки Маныч), реке Кубань ниже Краснодарского гидроузла с притоками, реке Протока, азовских лиманах Краснодарского края, включая лиманы Ейский, Бейсугский, Ахтарский, Курчанский и Большой Ахтанизовский с бассейнами впадающих в них рек.</label>
+                                            </div>
+                                        </div>
+                                        <!-- /sub-menu 47.25 -->
+                                    </div>
+                                </div>
+
+
+                                <!-- fishing rules -->
+                                <div class="gis-group-layer ml-2 pl-3" id="show-fishing-warning">
+                                    <div class="gis-element-title">Правила промышленного рыболовства</div>
+                                    <small class="text-muted d-none d-sm-block">Графическая интерпретация правил промышленного рыболовства</small>
+
+                                    <div class="gis-element-items pl-2 d-none">
                                         <div class="custom-control custom-checkbox text-muted">
                                             <input type="checkbox" class="custom-control-input" />
-                                            <label class="custom-control-label">п. 46.1.1.г. в реках протяженностью до 10 км - с моторных судов и плавучих средств</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-d" data-toggle="multipoly" data-target="fishing_rules:46_1_1_d" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-d">п. 46.1.1.д. на расстоянии менее 500 м от Болотовского водосброса Веселовского водохранилища</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-e" data-toggle="multipoly" data-target="fishing_rules:46_1_1_e" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-e">п. 46.1.1.е. в акватории Цимлянского государственного природного заказника</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-f" data-toggle="multipoly" data-target="fishing_rules:46_1_1_f" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-f">п. 46.1.1.ж. в балке Большая Садковка в Веселовском водохранилище</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-g" data-toggle="multipoly" data-target="fishing_rules:46_1_1_g" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-g">п. 46.1.1.з. в балке Малая Садковка в Веселовском водохранилище</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-h" data-toggle="multipoly" data-target="fishing_rules:46_1_1_h" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-h">п. 46.1.1.и. в балке Куцая в Веселовском водохранилище</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-i" data-toggle="multipoly" data-target="fishing_rules:46_1_1_i" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-i">п. 46.1.1.к. в балке Бугинская</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-1-j" data-toggle="multipoly" data-target="fishing_rules:46_1_1_j" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-1-j">п. 46.1.1.л. в акватории Веселовского водохранилища</label>
-                                        </div>
-                                        <small class="text-muted">Запрещена добыча (вылов) раков пресноводных</small>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-1-2" data-toggle="multipoly" data-target="fishing_rules:46_1_2" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-1-2">п. 46.1.2. в реке Койсуг (от устья до впадения в нее реки Чмутовой)</label>
+                                            <label class="custom-control-label">14. Районы, запретные для добычи (вылова) водных биоресурсов</label>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- /sub-sub menu 46.1 -->
-                                
-                                <!-- sub-sub menu 46.2 -->
-                                <div class="gis-subroup-lvl1-content pl-3 d-none">
-                                    <div class="gis-subgroup-lvl2-title">п. 46.2. В водных объектах рыбохозяйственного значения Краснодарского края и Республики Адыгея:</div>
-                                    <div class="gis-subgroup-lvl2-content d-none">
-                                        <small class="text-muted">Запрещена добыча (вылов) всех видов водных биоресурсов:</small>
-                                        <div class="custom-control custom-checkbox text-muted">
-                                            <input type="checkbox" class="custom-control-input" />
-                                            <label class="custom-control-label">п. 46.2.а. перед устьями рек на расстоянии менее 500 м в обе стороны от устьев</label>
-                                        </div>
-                                        
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-2-b" data-toggle="multipoly" data-target="fishing_rules:46_2_b" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-2-b">п. 46.2.б. в межлиманных соединениях и гирлах</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /sub-sub menu 46.2 -->
-                                
-                                <!-- sub-sub menu 46.3 -->
-                                <div class="gis-subroup-lvl1-content pl-3 d-none">
-                                    <div class="gis-subgroup-lvl2-title">п. 46.3. В водных объектах рыбохозяйственного значения Ставропольского края:</div>
-                                    <div class="gis-subgroup-lvl2-content d-none">
-                                        <small class="text-muted">Запрещена добыча (вылов) всех видов водных биоресурсов:</small>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-3-a" data-toggle="multipoly" data-target="fishing_rules:46_3_a" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-3-a">п. 46.3.а. в чаше консольного водосброса Невинномысского канала</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-3-b" data-toggle="multipoly" data-target="fishing_rules:46_3_b" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-3-b">п. 46.3.б. в реке Егорлык от ее истока до впадения в Сенгилеевское водохранилище</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /sub-sub menu 46.3 -->
-                                
-                                <!-- sub-sub menu 46.4 -->
-                                <div class="gis-subroup-lvl1-content pl-3 d-none">
-                                    <div class="gis-subgroup-lvl2-title">п. 46.4. В водных объектах рыбохозяйственного значения Карачаево-Черкесской Республики:</div>
-                                    <div class="gis-subgroup-lvl2-content d-none">
-                                        <div class="custom-control custom-checkbox text-muted">
-                                            <input type="checkbox" class="custom-control-input" />
-                                            <label class="custom-control-label">п. 46.4.а. запрещена добыча (вылов) всех видов водных биоресурсов: перед устьями рек на расстоянии менее 500 м в обе стороны от устьев</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-46-4-b" data-toggle="multipoly" data-target="fishing_rules:46_4_b" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-46-4-b">п. 46.4.б. Запрещена добыча (вылов) форели в реках</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /sub-sub menu 46.4 -->
-                            </div>
-
-                            <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
-                                <div class="gis-subgroup-lvl1-title">47. <span class="text-danger">Запретные</span> для добычи (вылова) водных биоресурсов <span class="text-danger">сроки</span> (периоды)</div>
-                                <!-- sub-sub menu 47.1 -->
-                                <div class="gis-subroup-lvl1-content pl-3 d-none">
-                                    <div class="gis-subgroup-lvl2-title">п. 47.1. с 15 сентября по 30 ноября - форели в водных объектах рыбохозяйственного значения, расположенных в административных границах :</div>
-                                    <div class="gis-subgroup-lvl2-content d-none">
-                                        <small class="text-muted">Запрещена добыча (вылов) всех видов биоресурсов</small>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-1-1-a" data-toggle="lines" data-target="fishing_rules:47_1_a" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-1-1-a">п. 47.1.а. река Кубань: от Красного моста Даутского заказника вверх по течению до истока</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-1-1-b" data-toggle="lines" data-target="fishing_rules:47_1_b" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-1-1-b">п. 47.1.б. река Теберда: от аула Нижняя Теберда вверх по течению до истока</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-1-1-c" data-toggle="lines" data-target="fishing_rules:47_1_c" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-1-1-c">п. 47.1.в. река Уруп: ниже устья реки Себельдинка</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /sub-sub menu 47.1 -->
-                                <!-- sub-sub menu 47.2 -->
-                                <div class="gis-subroup-lvl1-content pl-3 d-none">
-                                    <div class="gis-subgroup-lvl2-title">п. 47.2. с 1 марта по 31 мая:</div>
-                                    <div class="gis-subgroup-lvl2-content d-none">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-2-a" data-toggle="lines" data-target="fishing_rules:47_2_a" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-2-a">п. 47.2.а. в реке Мокрая Чумбурка - от устья до северо-западной окраины хутора Юшкино</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-2-b" data-toggle="lines" data-target="fishing_rules:47_2_b" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-2-b">п. 47.2.б. в Таганрогском заливе от юго-западной окраины села Маргаритово</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-2-c" data-toggle="lines" data-target="fishing_rules:47_2_c" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-2-c">п. 47.2.в. перед гирлом Миусского лимана на расстоянии менее 2,5 км в обе стороны от гирла</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-2-d" data-toggle="lines" data-target="fishing_rules:47_2_d" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-2-d">п. 47.2.г. в Веселовском водохранилище и балке Грекова в районе острова Большой</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-2-e" data-toggle="lines" data-target="fishing_rules:47_2_e" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-2-e">п. 47.2.д. в притоках реки Северский Донец (реки Кундрючья, Быстрая, Калитва)</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-2-f" data-toggle="lines" data-target="fishing_rules:47_2_f" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-2-f">п. 47.2.е. на участке реки Северский Донец от Усть-Быстрянской пристани до Бронницкой переправы</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /sub-sub menu 47.2 -->
-                                <!-- sub-sub menu 47.3 -->
-                                <div class="gis-subroup-lvl1-content pl-3 d-none">
-                                    <div class="gis-subgroup-lvl2-title">п. 47.3. с 1 апреля по 31 мая:</div>
-                                    <div class="gis-subgroup-lvl2-content d-none">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-3-a" data-toggle="lines" data-target="fishing_rules:47_3_a" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-3-a">п. 47.3.а. в реке Аксай с впадающими в нее реками Тузлов, Грушевка и ериком Караич, рекой Черкасской с Махинским лиманом, реке Койсуг</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox text-muted">
-                                            <input type="checkbox" class="custom-control-input" />
-                                            <label class="custom-control-label">п. 47.3.б. утратил силу. - Приказ Минсельхоза России от 29.11.2017 N 596</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox text-muted">
-                                            <input type="checkbox" class="custom-control-input" />
-                                            <label class="custom-control-label">п. 47.3.в. на расстоянии менее 500 м от автодорожных (относящихся к трассам федерального значения) и железнодорожных мостов, расположенных на всех несудоходных реках Азово-Черноморского рыбохозяйственного бассейна</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-3-b" data-toggle="lines" data-target="fishing_rules:47_3_b" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-3-b">п. 47.3.г. во всех внутренних водных объектах рыбохозяйственного значения Республики Крым (за исключением хирономид (мотыля) в водных </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fr-47-3-c" data-toggle="lines" data-target="fishing_rules:47_3_c" data-color="#f46842">
-                                            <label class="custom-control-label" for="fr-47-3-c">п. 47.3.д. во всех водных объектах Республики Адыгея, за исключением добычи (вылова) водных биоресурсов одной поплавочной удочкой или донной удочкой с одним крючком на одного гражданина, спиннингом с берега без использования всех видов судов или плавучих средств</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /sub-sub menu 47.3 -->
-                                <!-- sub-menu 47.4 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-4" data-toggle="multipoly" data-target="fishing_rules:47_4" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-4">п. 47.4. с 1 мая по 1 июня в Цимлянском водохранилище: от плотины Цимлянской ГЭС до железнодорожного моста у хутора Ложки, за исключением добычи (вылова) водных биоресурсов одной поплавочной или донной удочкой с одним крючком на одного гражданина, спиннингом с берега без использования всех видов судов и плавучих средств</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.4 -->
-                                <!-- sub-menu 47.5 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-5" data-toggle="multipoly" data-target="fishing_rules:47_5" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-5">п. 47.5. с 15 мая по 15 июля - на всей акватории Кубанского водохранилища</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.5 -->
-                                <!-- sub-menu 47.6 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-6" data-toggle="multipoly" data-target="fishing_rules:47_6" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-6">п. 47.6. с 25 апреля по 1 июня - в реке Дон: от железнодорожного моста у хутора Ложки в Цимлянском водохранилище до устья реки Иловля, за исключением добычи (вылова) водных биоресурсов одной поплавочной или донной удочкой с одним крючком на одного гражданина, спиннингом с берега без использования всех видов судов и плавучих средств</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.6 -->
-                                <!-- sub-menu 47.7 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-7" data-toggle="multipoly" data-target="fishing_rules:47_7" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-7">п. 47.7. с 20 апреля по 1 июня - в реке Дон со всеми его притоками, рукавами, протоками и полойными озерами на участке выше устья реки Иловля, за исключением добычи (вылова) водных биоресурсов одной поплавочной или донной удочкой с одним крючком на одного гражданина, спиннингом с берега без использования всех видов судов и плавучих средств</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.7 -->
-                                <!-- sub-menu 47.8.1 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-8-1" data-toggle="multipoly" data-target="fishing_rules:47_8_1" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-8-1">п. 47.8. с 1 марта по 31 мая - в азовских лиманах Краснодарского края</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.8.1 -->
-                                <!-- sub-menu 47.8 muted -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox text-muted">
-                                        <input type="checkbox" class="custom-control-input" />
-                                        <label class="custom-control-label">с 25 марта по 30 апреля - на водоемах и каналах Азово-Кубанских нерестово-выростных хозяйств или их частях, предоставленных для организации любительского и спортивного рыболовства;</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.8 muted -->
-                                <!-- sub-menu 47.8.2 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-8-2" data-toggle="multipoly" data-target="fishing_rules:47_8_2" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-8-2">п. 47.8. с 1 февраля по 1 мая - в Ейском, Бейсугском и Ахтарском лиманах</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.8.2 -->
-                                <!-- sub-menu 47.9-->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-9" data-toggle="multipoly" data-target="fishing_rules:47_9" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-9">п. 47.9. с 1 сентября по 15 июня - с применением блесен на реке Дон: от водозабора Семикаракорского консервного завода до верхней оконечности острова Раздорского</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.9 -->
-                                <!-- sub-menu 47.10-->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-10" data-toggle="lines" data-target="fishing_rules:47_10" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-10">п. 47.10. с распаления льда по 30 июня - на реке Маныч - от устья до запретного пространства Усть-Манычского гидроузла</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.10 -->
-                                <!-- sub-menu 47.11 muted -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox text-muted">
-                                        <input type="checkbox" class="custom-control-input" />
-                                        <label class="custom-control-label">п. 47.11. с 15 апреля по 15 июня - рыбца</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.11 muted -->
-                                <!-- sub-menu 47.12.1 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-12-1" data-toggle="multipoly" data-target="fishing_rules:47_12_1" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-12-1">п. 47.12. с 1 января по 14 июня - рака пресноводного в водных объектах Ростовской области (исключая Цимлянское водохранилище), Краснодарского края (за исключением азовских лиманов) и Республики Адыгея</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.12.1 -->
-                                <!-- sub-menu 47.12.2 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-12-2" data-toggle="multipoly" data-target="fishing_rules:47_12_2" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-12-2">п. 47.12. в течение всего года - рака пресноводного в азовских лиманах Краснодарского края</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.12.2 -->
-                                <!-- sub-menu 47.12.3 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-12-3" data-toggle="multipoly" data-target="fishing_rules:47_12_3" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-12-3">п. 47.12. с 1 декабря по 15 августа - рака пресноводного в водных объектах Ставропольского края, Республики Калмыкия и Карачаево-Черкесской Республики</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.12.3 -->
-                                <!-- sub-menu 47.12.4 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-12-4" data-toggle="multipoly" data-target="fishing_rules:47_12_4" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-12-4">п. 47.12. с 1 января по 15 сентября - рака пресноводного в Цимлянском водохранилище</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.12.4 -->
-                                <!-- sub-menu 47.12.5 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-12-5" data-toggle="multipoly" data-target="fishing_rules:47_12_5" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-12-5">п. 47.12. с 1 января по 15 июля - рака пресноводного в водных объектах Республики Крым</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.12.5 -->
-                                <!-- sub-menu 47.13 muted -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox text-muted">
-                                        <input type="checkbox" class="custom-control-input" />
-                                        <label class="custom-control-label">п. 47.13. с 15 ноября по 31 марта - на зимовальных ямах, согласно Приложению N 1 к Правилам рыболовства "Перечень зимовальных ям, расположенных на водных объектах рыбохозяйственного значения Воронежской, Волгоградской, Липецкой, Саратовской, Ростовской и Тульской областей, Краснодарского края и Республики Адыгея"</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.13 muted -->
-                                <!-- sub-menu 47.14 muted -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox text-muted">
-                                        <input type="checkbox" class="custom-control-input" />
-                                        <label class="custom-control-label">п. 47.14. с 15 ноября по 31 марта - повсеместно на внутренних водных объектах осуществлять подводную охоту</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.14 muted -->
-                                <!-- sub-menu 47.15 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-15" data-toggle="multipoly" data-target="fishing_rules:47_15" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-15">п. 47.15. в течение всего года усачей и кумжи (форели) в водных объектах рыбохозяйственного значения Республики Крым</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.15 -->
-                                <!-- sub-menu 47.16 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-16" data-toggle="multipoly" data-target="fishing_rules:47_16" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-16">п. 47.16. с 1 января по 31 мая - камбалы-глоссы в Азовском море, Керченском проливе и заливе Сиваш</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.16 -->
-                                <!-- sub-menu 47.17 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-17" data-toggle="multipoly" data-target="fishing_rules:47_17" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-17">п. 47.17. с 1 июля по 31 июля - креветок черноморских каменной и травяной в Азовском море, Керченском проливе и заливе Сиваш</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.17 -->
-                                <!-- sub-menu 47.18 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-18" data-toggle="multipoly" data-target="fishing_rules:47_18" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-18">п. 47.18. с 15 марта по 30 апреля - рыб в заливе Стройманыч озера Маныч-Гудило и в реке Калаус от устья на расстоянии 3 км выше по течению</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.18 -->
-                                <!-- sub-menu 47.19 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-19" data-toggle="multilayer" data-target="fishing_rules:47_19_lines,lines;fishing_rules:47_19_polygons,multipoly" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-19">п. 47.19. в течение всего года - судака и берша в реке Дон от плотины Цимлянского гидроузла до устья, включая бассейны всех впадающих в этот участок Дона рек (исключая Веселовское и Пролетарское водохранилища на реке Маныч), в реке Кубань от плотины Краснодарского гидроузла до устья, реке Протока, в азовских лиманах Краснодарского края, включая лиманы Ейский, Бейсугский, Ахтарский, Курчанский и Большой Ахтанизовский, в Азовском море и в Таганрогском заливе</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.19 -->
-                                <!-- sub-menu 47.20 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-20" data-toggle="multipoly" data-target="fishing_rules:47_20" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-20">п. 47.20. с 1 декабря по 30 апреля - судака и берша в Веселовском и Пролетарском водохранилищах</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.20 -->
-                                <!-- sub-menu 47.21 muted -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox text-muted">
-                                        <input type="checkbox" class="custom-control-input" />
-                                        <label class="custom-control-label">п. 47.21. с 15 января по 28 (29) февраля - щуки повсеместно</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.21 muted -->
-                                <!-- sub-menu 47.22 muted -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox text-muted">
-                                        <input type="checkbox" class="custom-control-input" />
-                                        <label class="custom-control-label">п. 47.22. с 15 марта по 30 апреля - судака повсеместно</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.22 muted -->
-                                <!-- sub-menu 47.23 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-23" data-toggle="multipoly" data-target="fishing_rules:47_23" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-23">п. 47.23. с 1 мая по 30 июня - всех видов рыб в реке Егорлык от чаши консольного водосброса из Буферного водохранилища до впадения в Новотроицкое водохранилище</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.23 -->
-                                <!-- sub-menu 47.24 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-24" data-toggle="multipoly" data-target="fishing_rules:47_24" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-24">п. 47.24. с 1 мая по 30 июня - всех видов рыб в Кумо-Манычском канале от пикета N 962 до впадения в Чограйское водохранилище</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.24 -->
-                                <!-- sub-menu 47.25 -->
-                                <div class="gis-subroup-lvl1-content pl-1 d-none">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="fr-47-25" data-toggle="multilayer" data-target="fishing_rules:47_25_lines,lines;fishing_rules:47_25_polygons,multipoly" data-color="#f46842" />
-                                        <label class="custom-control-label" for="fr-47-25">п. 47.25. с 15 марта по 30 апреля - тарани и плотвы в Азовском море, Таганрогском заливе, реке Дон ниже плотины Цимлянской ГЭС с притоками (за исключением реки Маныч), реке Кубань ниже Краснодарского гидроузла с притоками, реке Протока, азовских лиманах Краснодарского края, включая лиманы Ейский, Бейсугский, Ахтарский, Курчанский и Большой Ахтанизовский с бассейнами впадающих в них рек.</label>
-                                    </div>
-                                </div>
-                                <!-- /sub-menu 47.25 -->
-                            </div>
-                        </div>
 
 
-                        <!-- fishing rules -->
-                        <div class="gis-group-layer ml-2 pl-3" id="show-fishing-warning">
-                            <div class="gis-element-title">Правила промышленного рыболовства</div>
-                            <small class="text-muted d-none d-sm-block">Графическая интерпретация правил промышленного рыболовства</small>
+                                    <!-- submenu 46 -->
+                                    <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
+                                        <div class="gis-subgroup-lvl1-title">15. Запретные для добычи (вылова) водных биоресурсов сроки (периоды).</div>
 
-                            <div class="gis-element-items pl-2 d-none">
-                                <div class="custom-control custom-checkbox text-muted">
-                                    <input type="checkbox" class="custom-control-input" />
-                                    <label class="custom-control-label">14. Районы, запретные для добычи (вылова) водных биоресурсов</label>
-                                </div>
-                            </div>
+                                        <!-- sub-sub menu 46.1 -->
+                                        <div class="gis-subroup-lvl1-content pl-3 d-none">
+                                            <div class="gis-subgroup-lvl2-title">15.2. <span class="text-danger">Запрещается</span> осуществление промышленного рыболовства и прибрежного рыболовства всех видов водных биоресурсов, <span class="text-success">за исключением:</span></div>
+                                            <div class="gis-subgroup-lvl2-content d-none">
+                                                <strong class="text-info">Частиковые виды рыб</strong>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="chastikovye_1" data-toggle="multipoly" data-target="fishing_rules:chastikovye_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="chastikovye_1">с 1 сентября по 15 марта - закидными неводами (волокушами), ставными неводами, каравками</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="chastikovye_2" data-toggle="multipoly" data-target="fishing_rules:chastikovye_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="chastikovye_2">с 1 марта по 15 мая - ставными неводами, каравками</label>
+                                                </div>
+                                                <hr />
+                                                <strong class="text-info">Бычки</strong>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="bychki_1" data-toggle="multipoly" data-target="fishing_rules:bychki_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="bychki_1">с 15 августа по 15 декабря, а также в заморный период, драгами с механизированным способом использования с размером (шагом) ячеи в кутце не менее 18 мм в количестве не более 45 единиц и с 15 марта по 15 апреля драгами с механизированным способом использования с размером (шагом) ячеи в кутце не менее 20 мм в количестве не более 3 единиц</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="bychki_2" data-toggle="multipoly" data-target="fishing_rules:bychki_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="bychki_2">только в заморный период добыча (вылов) бычков в указанном районе осуществляется, включая пятикилометровую прибрежную зону</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="bychki_3" data-toggle="multipoly" data-target="fishing_rules:bychki_3" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="bychki_3">с 15 августа по 15 декабря, а также в заморный период подъемными ловушками и каравками</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="bychki_4" data-toggle="multipoly" data-target="fishing_rules:bychki_4" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="bychki_4">с 15 августа по 15 декабря, а также в заморный период драгами с ручным способом использования, при котором замет драги производится с любого плавсредства либо с берега, а выборка - вручную (далее - ручной способ использования) или полумеханизированным способом использования, при котором замет драги производится с самоходного судна, выборка - с помощью ручных промысловых устройств или вручную (далее - полумеханизированный способ), закидными неводами (волокушами)</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="bychki_5" data-toggle="multipoly" data-target="fishing_rules:bychki_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="bychki_5">с 1 марта по 30 апреля подъемными ловушками, каравками, закидными неводами (волокушами)</label>
+                                                </div>
+                                                <hr />
+                                                <strong class="text-info">Хамса</strong>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="hamsa_1" data-toggle="multipoly" data-target="fishing_rules:hamsa_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="hamsa_1">с 1 сентября по 20 декабря - кошельковыми неводами (количество не ограничивается), конусными сетями с применением электросвета (количество не ограничивается) и тралами размером по верхней подборе не более 38 метров с размером (шагом) ячеи в кутце 6,5 мм (в количестве не более 11 единиц)</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="hamsa_2" data-toggle="multipoly" data-target="fishing_rules:hamsa_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="hamsa_2">с 20 сентября по 20 декабря - ставными неводами с шагом ячеи не менее 6 мм</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="hamsa_3" data-toggle="multipoly" data-target="fishing_rules:hamsa_3" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="hamsa_3">с 20 сентября по 20 декабря - ставными неводами с шагом ячеи не менее 6 мм</label>
+                                                </div>
+                                                <hr />
+                                                <strong class="text-info">Тюлька</strong>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="tyulka_1" data-toggle="multipoly" data-target="fishing_rules:tyulka_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="tyulka_1">с 15 ноября по 10 апреля - кошельковыми неводами (количество не ограничивается) и тралами размером по верхней подборе не более 38 метров с шагом ячеи в кутце 6,5 мм (в количестве не более 11 единиц)</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="tyulka_2" data-toggle="multipoly" data-target="fishing_rules:tyulka_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="tyulka_2">15 февраля по 31 мая - ставными неводами</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="tyulka_3" data-toggle="multipoly" data-target="fishing_rules:tyulka_3" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="tyulka_3">с 1 февраля по 15 июня - ставными неводами (общее количество не более 150 единиц)</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="tyulka_4" data-toggle="multipoly" data-target="fishing_rules:tyulka_4" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="tyulka_4">с 16 июня по 30 сентября - ставными неводами</label>
+                                                </div>
 
+                                                <hr />
 
-                            <!-- submenu 46 -->
-                            <div class="gis-subgroup-lvl1 gis-element-items pl-2 d-none">
-                                <div class="gis-subgroup-lvl1-title">15. Запретные для добычи (вылова) водных биоресурсов сроки (периоды).</div>
-
-                                <!-- sub-sub menu 46.1 -->
-                                <div class="gis-subroup-lvl1-content pl-3 d-none">
-                                    <div class="gis-subgroup-lvl2-title">15.2. <span class="text-danger">Запрещается</span> осуществление промышленного рыболовства и прибрежного рыболовства всех видов водных биоресурсов, <span class="text-success">за исключением:</span></div>
-                                    <div class="gis-subgroup-lvl2-content d-none">
-                                        <strong class="text-info">Частиковые виды рыб</strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="chastikovye_1" data-toggle="multipoly" data-target="fishing_rules:chastikovye_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="chastikovye_1">с 1 сентября по 15 марта - закидными неводами (волокушами), ставными неводами, каравками</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="chastikovye_2" data-toggle="multipoly" data-target="fishing_rules:chastikovye_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="chastikovye_2">с 1 марта по 15 мая - ставными неводами, каравками</label>
-                                        </div>
-                                        <hr />
-                                        <strong class="text-info">Бычки</strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="bychki_1" data-toggle="multipoly" data-target="fishing_rules:bychki_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="bychki_1">с 15 августа по 15 декабря, а также в заморный период, драгами с механизированным способом использования с размером (шагом) ячеи в кутце не менее 18 мм в количестве не более 45 единиц и с 15 марта по 15 апреля драгами с механизированным способом использования с размером (шагом) ячеи в кутце не менее 20 мм в количестве не более 3 единиц</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="bychki_2" data-toggle="multipoly" data-target="fishing_rules:bychki_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="bychki_2">только в заморный период добыча (вылов) бычков в указанном районе осуществляется, включая пятикилометровую прибрежную зону</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="bychki_3" data-toggle="multipoly" data-target="fishing_rules:bychki_3" data-color="#2bad50">
-                                            <label class="custom-control-label" for="bychki_3">с 15 августа по 15 декабря, а также в заморный период подъемными ловушками и каравками</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="bychki_4" data-toggle="multipoly" data-target="fishing_rules:bychki_4" data-color="#2bad50">
-                                            <label class="custom-control-label" for="bychki_4">с 15 августа по 15 декабря, а также в заморный период драгами с ручным способом использования, при котором замет драги производится с любого плавсредства либо с берега, а выборка - вручную (далее - ручной способ использования) или полумеханизированным способом использования, при котором замет драги производится с самоходного судна, выборка - с помощью ручных промысловых устройств или вручную (далее - полумеханизированный способ), закидными неводами (волокушами)</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="bychki_5" data-toggle="multipoly" data-target="fishing_rules:bychki_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="bychki_5">с 1 марта по 30 апреля подъемными ловушками, каравками, закидными неводами (волокушами)</label>
-                                        </div>
-                                        <hr />
-                                        <strong class="text-info">Хамса</strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="hamsa_1" data-toggle="multipoly" data-target="fishing_rules:hamsa_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="hamsa_1">с 1 сентября по 20 декабря - кошельковыми неводами (количество не ограничивается), конусными сетями с применением электросвета (количество не ограничивается) и тралами размером по верхней подборе не более 38 метров с размером (шагом) ячеи в кутце 6,5 мм (в количестве не более 11 единиц)</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="hamsa_2" data-toggle="multipoly" data-target="fishing_rules:hamsa_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="hamsa_2">с 20 сентября по 20 декабря - ставными неводами с шагом ячеи не менее 6 мм</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="hamsa_3" data-toggle="multipoly" data-target="fishing_rules:hamsa_3" data-color="#2bad50">
-                                            <label class="custom-control-label" for="hamsa_3">с 20 сентября по 20 декабря - ставными неводами с шагом ячеи не менее 6 мм</label>
-                                        </div>
-                                        <hr />
-                                        <strong class="text-info">Тюлька</strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="tyulka_1" data-toggle="multipoly" data-target="fishing_rules:tyulka_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="tyulka_1">с 15 ноября по 10 апреля - кошельковыми неводами (количество не ограничивается) и тралами размером по верхней подборе не более 38 метров с шагом ячеи в кутце 6,5 мм (в количестве не более 11 единиц)</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="tyulka_2" data-toggle="multipoly" data-target="fishing_rules:tyulka_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="tyulka_2">15 февраля по 31 мая - ставными неводами</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="tyulka_3" data-toggle="multipoly" data-target="fishing_rules:tyulka_3" data-color="#2bad50">
-                                            <label class="custom-control-label" for="tyulka_3">с 1 февраля по 15 июня - ставными неводами (общее количество не более 150 единиц)</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="tyulka_4" data-toggle="multipoly" data-target="fishing_rules:tyulka_4" data-color="#2bad50">
-                                            <label class="custom-control-label" for="tyulka_4">с 16 июня по 30 сентября - ставными неводами</label>
-                                        </div>
-
-                                        <hr />
-
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="tyulka_aterina_pekarina_bychki" data-toggle="multipoly" data-target="fishing_rules:tyulka_aterina_pekarina_bychki" data-color="#2bad50">
-                                            <label class="custom-control-label" for="tyulka_aterina_pekarina_bychki">Тюлька, атерина, перкарина и бычки - с 1 марта по 15 апреля ставными неводами</label>
-                                        </div>
-                                        <hr />
-                                        <strong class="text-info">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="tyulka_aterina_pekarina_bychki" data-toggle="multipoly" data-target="fishing_rules:tyulka_aterina_pekarina_bychki" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="tyulka_aterina_pekarina_bychki">Тюлька, атерина, перкарина и бычки - с 1 марта по 15 апреля ставными неводами</label>
+                                                </div>
+                                                <hr />
+                                                <strong class="text-info">
                                             Азово-черноморские кефали (сингиль, лобан, остронос)
                                         </strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="kefali_1" data-toggle="multipoly" data-target="fishing_rules:kefali_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="kefali_1">с 1 июня по 31 декабря - волокушами, закидными кефалевыми неводами (аламанами), ставными и обкидными одностенными сетями, ставными неводами, подъемными заводами, кольцевыми неводами, "на рогожку", в том числе в ночное время суток</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="kefali_2" data-toggle="multipoly" data-target="fishing_rules:kefali_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="kefali_2">с 15 июля по 31 декабря - закидными неводами</label>
-                                        </div>
-                                        <hr />
-                                        <strong class="text-info">Пиленгас</strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="pilengas_1" data-toggle="multipoly" data-target="fishing_rules:pilengas_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="pilengas_1">с 1 сентября по 15 марта закидными неводами, волокушами, ставными неводами, каравками, подъемными кефалевыми заводами</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="pilengas_2" data-toggle="multipoly" data-target="fishing_rules:pilengas_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="pilengas_2">с 1 марта по 15 мая - ставными неводами, каравками</label>
-                                        </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="kefali_1" data-toggle="multipoly" data-target="fishing_rules:kefali_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="kefali_1">с 1 июня по 31 декабря - волокушами, закидными кефалевыми неводами (аламанами), ставными и обкидными одностенными сетями, ставными неводами, подъемными заводами, кольцевыми неводами, "на рогожку", в том числе в ночное время суток</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="kefali_2" data-toggle="multipoly" data-target="fishing_rules:kefali_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="kefali_2">с 15 июля по 31 декабря - закидными неводами</label>
+                                                </div>
+                                                <hr />
+                                                <strong class="text-info">Пиленгас</strong>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="pilengas_1" data-toggle="multipoly" data-target="fishing_rules:pilengas_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="pilengas_1">с 1 сентября по 15 марта закидными неводами, волокушами, ставными неводами, каравками, подъемными кефалевыми заводами</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="pilengas_2" data-toggle="multipoly" data-target="fishing_rules:pilengas_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="pilengas_2">с 1 марта по 15 мая - ставными неводами, каравками</label>
+                                                </div>
 
-                                        <hr />
-                                        <strong class="text-info">Сельдь</strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="seld_1" data-toggle="multipoly" data-target="fishing_rules:seld_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="seld_1">с 1 октября по 31 мая - ставными неводами и ставными одностенными сетями. Длина одной сети не должна превышать 75 м, длина одной ставки сетей (сетепорядка) не должна превышать 750 м</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="seld_2" data-toggle="multipoly" data-target="fishing_rules:seld_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="seld_2">с 1 октября по 31 марта - закидными неводами</label>
-                                        </div>
+                                                <hr />
+                                                <strong class="text-info">Сельдь</strong>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="seld_1" data-toggle="multipoly" data-target="fishing_rules:seld_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="seld_1">с 1 октября по 31 мая - ставными неводами и ставными одностенными сетями. Длина одной сети не должна превышать 75 м, длина одной ставки сетей (сетепорядка) не должна превышать 750 м</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="seld_2" data-toggle="multipoly" data-target="fishing_rules:seld_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="seld_2">с 1 октября по 31 марта - закидными неводами</label>
+                                                </div>
 
-                                        <hr />
-                                        <strong class="text-info">Барабуля и ставрида</strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="barabulya_stavrida_1" data-toggle="multipoly" data-target="fishing_rules:barabulya_stavrida_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="barabulya_stavrida_1">с 1 мая по 31 июля и с 1 сентября по 31 октября - ставными неводами и конусными сетями</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="barabulya_stavrida_2" data-toggle="multipoly" data-target="fishing_rules:barabulya_stavrida_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="barabulya_stavrida_2">с 1 мая по 31 июля и с 1 сентября по 31 октября - ставными неводами с размером (шагом) ячеи 10 мм в общем количестве не более 3 единиц</label>
-                                        </div>
+                                                <hr />
+                                                <strong class="text-info">Барабуля и ставрида</strong>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="barabulya_stavrida_1" data-toggle="multipoly" data-target="fishing_rules:barabulya_stavrida_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="barabulya_stavrida_1">с 1 мая по 31 июля и с 1 сентября по 31 октября - ставными неводами и конусными сетями</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="barabulya_stavrida_2" data-toggle="multipoly" data-target="fishing_rules:barabulya_stavrida_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="barabulya_stavrida_2">с 1 мая по 31 июля и с 1 сентября по 31 октября - ставными неводами с размером (шагом) ячеи 10 мм в общем количестве не более 3 единиц</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="katran_skaty" data-toggle="multipoly" data-target="fishing_rules:katran_skaty" data-color="#2bad50">
-                                            <label class="custom-control-label" for="katran_skaty">Акула-катран, скаты - с 20 сентября по 30 ноября - ставными одностенными сетями</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="katran_skaty" data-toggle="multipoly" data-target="fishing_rules:katran_skaty" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="katran_skaty">Акула-катран, скаты - с 20 сентября по 30 ноября - ставными одностенными сетями</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="sargan" data-toggle="multipoly" data-target="fishing_rules:sargan" data-color="#2bad50">
-                                            <label class="custom-control-label" for="sargan">Сарган - с 1 мая по 31 июля и с 1 сентября по 31 октября обкидными одностенными сетями и ставными неводами</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="sargan" data-toggle="multipoly" data-target="fishing_rules:sargan" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="sargan">Сарган - с 1 мая по 31 июля и с 1 сентября по 31 октября обкидными одностенными сетями и ставными неводами</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="zostera" data-toggle="multipoly" data-target="fishing_rules:zostera" data-color="#2bad50">
-                                            <label class="custom-control-label" for="zostera">Зостера и другие морские растения - в течение года методом скашивания при помощи серпов и косилок</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="zostera" data-toggle="multipoly" data-target="fishing_rules:zostera" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="zostera">Зостера и другие морские растения - в течение года методом скашивания при помощи серпов и косилок</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="hironomidy" data-toggle="multipoly" data-target="fishing_rules:hironomidy" data-color="#2bad50">
-                                            <label class="custom-control-label" for="hironomidy">Хирономиды - в течение года - мотыльницами диаметром до 3 м, ручными сачками диаметром до 0,6 м и рамками-ситами размером до 1 кв. м из мельничного газа с использованием насосов или помп для взмучивания ила. При добыче (вылове) хирономид допускается использование насосов производительностью не более 45 куб. м в час</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="hironomidy" data-toggle="multipoly" data-target="fishing_rules:hironomidy" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="hironomidy">Хирономиды - в течение года - мотыльницами диаметром до 3 м, ручными сачками диаметром до 0,6 м и рамками-ситами размером до 1 кв. м из мельничного газа с использованием насосов или помп для взмучивания ила. При добыче (вылове) хирономид допускается использование насосов производительностью не более 45 куб. м в час</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="skafarka" data-toggle="multipoly" data-target="fishing_rules:skafarka" data-color="#2bad50">
-                                            <label class="custom-control-label" for="skafarka">Скафарка - в течение года - сачками, сбором руками и водолазным способом</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="skafarka" data-toggle="multipoly" data-target="fishing_rules:skafarka" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="skafarka">Скафарка - в течение года - сачками, сбором руками и водолазным способом</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="meduzy" data-toggle="multipoly" data-target="fishing_rules:meduzy" data-color="#2bad50">
-                                            <label class="custom-control-label" for="meduzy">Медузы - с 15 июня по 30 сентября - закидными неводами, волокушами и ручными сачками. Прилов других видов водных биоресурсов при добыче (вылове) медуз не допускается</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="meduzy" data-toggle="multipoly" data-target="fishing_rules:meduzy" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="meduzy">Медузы - с 15 июня по 30 сентября - закидными неводами, волокушами и ручными сачками. Прилов других видов водных биоресурсов при добыче (вылове) медуз не допускается</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="krevetki" data-toggle="multipoly" data-target="fishing_rules:krevetki" data-color="#2bad50">
-                                            <label class="custom-control-label" for="krevetki">Креветки черноморские каменная и травяная - с 1 сентября по 31 мая ручными сачками, волокушами</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="krevetki" data-toggle="multipoly" data-target="fishing_rules:krevetki" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="krevetki">Креветки черноморские каменная и травяная - с 1 сентября по 31 мая ручными сачками, волокушами</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="pontogammarus" data-toggle="multipoly" data-target="fishing_rules:pontogammarus" data-color="#2bad50">
-                                            <label class="custom-control-label" for="pontogammarus">Понтогаммарус - с 1 апреля по 30 ноября ручными сачками в прибрежье (кроме залива Сиваш) до глубин 2 м</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="pontogammarus" data-toggle="multipoly" data-target="fishing_rules:pontogammarus" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="pontogammarus">Понтогаммарус - с 1 апреля по 30 ноября ручными сачками в прибрежье (кроме залива Сиваш) до глубин 2 м</label>
+                                                </div>
 
-                                        <hr />
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="rapany" data-toggle="multipoly" data-target="fishing_rules:rapany" data-color="#2bad50">
-                                            <label class="custom-control-label" for="rapany">Рапаны - в течение года драгами, подъемными ловушками, сбором руками, водолазным способом</label>
-                                        </div>
+                                                <hr />
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="rapany" data-toggle="multipoly" data-target="fishing_rules:rapany" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="rapany">Рапаны - в течение года драгами, подъемными ловушками, сбором руками, водолазным способом</label>
+                                                </div>
 
-                                        <hr />
-                                        <strong class="text-info">Мидии</strong>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="midii_1" data-toggle="multipoly" data-target="fishing_rules:midii_1" data-color="#2bad50">
-                                            <label class="custom-control-label" for="midii_1">с 1 октября по 31 марта и с 1 июня по 31 августа - скребками, сачками, щипцами, сбор руками</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="midii_2" data-toggle="multipoly" data-target="fishing_rules:midii_2" data-color="#2bad50">
-                                            <label class="custom-control-label" for="midii_2">с 16 октября по 31 марта и с 1 июня по 31 августа - скребками, сачками, щипцами, сбор руками</label>
+                                                <hr />
+                                                <strong class="text-info">Мидии</strong>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="midii_1" data-toggle="multipoly" data-target="fishing_rules:midii_1" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="midii_1">с 1 октября по 31 марта и с 1 июня по 31 августа - скребками, сачками, щипцами, сбор руками</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="midii_2" data-toggle="multipoly" data-target="fishing_rules:midii_2" data-color="#2bad50">
+                                                    <label class="custom-control-label" for="midii_2">с 16 октября по 31 марта и с 1 июня по 31 августа - скребками, сачками, щипцами, сбор руками</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                            <div class="gis-settings">
+                                <div class="text-head-major">Просмотр области</div>
+                                <div class="ml-2">
+                                    <span class="badge badge-light" id="gis-zoom-azov">🔎 Азов</span>
+                                    <span class="badge badge-light" id="gis-zoom-blacksea">🔎 ЧМ</span>
+                                    <span class="badge badge-light" id="gis-zoom-rostov">🔎 Ростов</span>
+                                    <span class="badge badge-light" id="gis-zoom-krasnodar">🔎 Краснодар</span>
+                                </div>
+                            </div>
+                            <div class="gis-settings">
+                                <div class="text-head-major">Подложка</div>
+                                <div class="ml-2">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="gis-tile-yandex" name="gis-tile" class="custom-control-input">
+                                        <label class="custom-control-label" for="gis-tile-yandex">Спутник</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="gis-tile-yandex-scheme" name="gis-tile" class="custom-control-input" checked>
+                                        <label class="custom-control-label" for="gis-tile-yandex-scheme">Схема</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="gis-tile-azniirkh" name="gis-tile" class="custom-control-input">
+                                        <label class="custom-control-label" for="gis-tile-azniirkh">АзНИИРХ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gis-settings">
+                                <div class="text-head-major">Местность</div>
+                                <div class="ml-2">
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input type="checkbox" id="gis-cities" name="gis-cities" class="custom-control-input" data-toggle="point" data-target="azniirkh_zones:south_russia_placekeys">
+                                        <label class="custom-control-label" for="gis-cities">Города</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input type="checkbox" id="gis-borders" name="gis-borders" class="custom-control-input">
+                                        <label class="custom-control-label" for="gis-borders">Округа</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                  <div class="gis-settings">
-                    <div class="text-head-major">Просмотр области</div>
-                        <div class="ml-2">
-                            <span class="badge badge-light" id="gis-zoom-azov">🔎 Азов</span>
-                            <span class="badge badge-light" id="gis-zoom-blacksea">🔎 ЧМ</span>
-                            <span class="badge badge-light" id="gis-zoom-rostov">🔎 Ростов</span>
-                            <span class="badge badge-light" id="gis-zoom-krasnodar">🔎 Краснодар</span>
-                        </div>
-                  </div>
-                  <div class="gis-settings">
-                    <div class="text-head-major">Подложка</div>
-                    <div class="ml-2">
-                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="gis-tile-yandex" name="gis-tile" class="custom-control-input">
-                          <label class="custom-control-label" for="gis-tile-yandex">Спутник</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="gis-tile-yandex-scheme" name="gis-tile" class="custom-control-input" checked>
-                          <label class="custom-control-label" for="gis-tile-yandex-scheme">Схема</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="gis-tile-azniirkh" name="gis-tile" class="custom-control-input">
-                          <label class="custom-control-label" for="gis-tile-azniirkh">АзНИИРХ</label>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="gis-settings">
-                    <div class="text-head-major">Местность</div>
-                    <div class="ml-2">
-                        <div class="custom-control custom-checkbox custom-control-inline">
-                          <input type="checkbox" id="gis-cities" name="gis-cities" class="custom-control-input" data-toggle="point" data-target="azniirkh_zones:south_russia_placekeys">
-                          <label class="custom-control-label" for="gis-cities">Города</label>
-                        </div>
-                        <div class="custom-control custom-checkbox custom-control-inline">
-                          <input type="checkbox" id="gis-borders" name="gis-borders" class="custom-control-input">
-                          <label class="custom-control-label" for="gis-borders">Округа</label>
-                        </div>
-                    </div>
-                  </div>
-                  </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Modal tree element -->
-<div class="modal fade" id="modalTreeDisplay" tabindex="-1" role="dialog" aria-labelledby="modalTreeDisplay" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Параметры объекта: <span id="display-layer-name-span">unknown</span></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- Modal tree element -->
+    <div class="modal fade" id="modalTreeDisplay" tabindex="-1" role="dialog" aria-labelledby="modalTreeDisplay" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Параметры объекта: <span id="display-layer-name-span">unknown</span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="modal-search-field" placeholder="Поисковой запрос ..." aria-label="Поисковой запрос" aria-describedby="button-make-search">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" id="modal-search-btn" type="button" id="button-make-search">Найти</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="modal-search-field" placeholder="Поисковой запрос ..." aria-label="Поисковой запрос" aria-describedby="button-make-search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" id="modal-search-btn" type="button" id="button-make-search">Найти</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div id="modal-found-text" class="d-none">Найдено: <span id="modal-found-count">0</span></div>
+                    <div class="modal-feature"></div>
                 </div>
             </div>
-            <div id="modal-found-text" class="d-none">Найдено: <span id="modal-found-count">0</span></div>
-            <div class="modal-feature"></div>
         </div>
-      </div>
     </div>
-  </div>
 
     <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -954,18 +961,21 @@
 
         // define map object with center
         var map = L.map('azniirkh-map').setView([46, 36], 7);
-        
-        var bg = L.tileLayer(
+
+        var bg = L.tileLayer('http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}', {
+            attribution: '<a href="https://2gis.ru" target="_blank">2gis.ru</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>'
+        }).addTo(map);
+        /**var bg = L.tileLayer(
           'https://vec{s}.maps.yandex.net/tiles?l=map&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU', {
             subdomains: ['01', '02', '03', '04'],
             attribution: '<a href="https://yandex.ru" target="_blank">Яндекс</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>',
             reuseTiles: true,
             updateWhenIdle: false
           }
-        ).addTo(map);
+        ).addTo(map);*/
         // change map projection. Yandex: L.CRS.EPSG3395
         map.options.crs = L.CRS.EPSG3395;
-        
+
         // fix bootstrap custom-checkbox bug - uncheck all boxes on page overload
         $('.custom-control-input').prop('checked', false);
         $('#gis-tile-yandex-scheme').prop('checked', true);
@@ -975,4 +985,5 @@
         //});
     </script>
 </body>
+
 </html>
