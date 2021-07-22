@@ -119,22 +119,11 @@ $(function() {
             map.options.crs = L.CRS.EPSG3857;
         }
         if (mid === 'gis-tile-yandex') {
-            bg = L.tileLayer(
-                'https://sat{s}.maps.yandex.net/tiles?l=sat&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU', {
-                    subdomains: ['01', '02', '03', '04'],
-                    attribution: '<a href="https://yandex.ru" target="_blank">yandex.ru</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>',
-                    reuseTiles: true,
-                    updateWhenIdle: false
-                }
-            ).addTo(map);
+            bg = L.yandex('yandex#satellite').addTo(map);
             map.options.crs = L.CRS.EPSG3395;
         }
         if (mid === 'gis-tile-yandex-scheme') {
-            bg = L.tileLayer('http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}', {
-                attribution: '<a href="https://2gis.ru" target="_blank">2gis.ru</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>',
-                reuseTiles: true,
-                updateWhenIdle: false
-            }).addTo(map);
+            bg = L.yandex('yandex#map').addTo(map);
             map.options.crs = L.CRS.EPSG3395;
         }
 

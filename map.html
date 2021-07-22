@@ -951,7 +951,9 @@
 
     <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=30d6bc13-c85c-458e-b437-68fccc459263&lang=ru_RU" type="text/javascript"></script>
     <script src="vendor/leaflet/leaflet.js"></script>
+    <script src="vendor/leaflet-plugins-3.4.0/layer/tile/Yandex.js"></script>
     <script src='vendor/turf/turf.min.js'></script>
     <script src="js/gis.js"></script>
     <script src="js/jquery-features.js"></script>
@@ -962,9 +964,7 @@
         // define map object with center
         var map = L.map('azniirkh-map').setView([46, 36], 7);
 
-        var bg = L.tileLayer('https://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}', {
-            attribution: '<a href="https://2gis.ru" target="_blank">2gis.ru</a> | <a href="http://azniirkh.ru">АзНИИРХ</a>'
-        }).addTo(map);
+        var bg = L.yandex('yandex#map').addTo(map);
         /**var bg = L.tileLayer(
           'https://vec{s}.maps.yandex.net/tiles?l=map&v=3.378.0&z={z}&x={x}&y={y}&lang=ru_RU', {
             subdomains: ['01', '02', '03', '04'],
